@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FALASIFAH.exe | Birthday Quest</title>
+<style>
+  :root {
+    --bg: #100b20;
+    --panel: #211638;
+    --pink: #ff5ca8;
+    --cyan: #58f6ff;
+    --yellow: #ffe66d;
+    --white: #fff3fc;
+    --muted: #b9a9d3;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--white);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(#49316c 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: "Courier New", monospace;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+  }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+    color: var(--white);
+    border: 2px solid var(--cyan);
+    background: #24163b;
+    padding: 13px 16px;
+    box-shadow: 4px 4px 0 #090611;
+    transition: transform .12s, background .12s;
+  }
+
+  button:hover {
+    background: #382052;
+    transform: translateY(-2px);
+  }
+
+  button:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 4px;
+  }
+
+  button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+  }
+
+  .game {
+    width: min(100%, 680px);
+    border: 3px solid var(--pink);
+    background: rgba(16, 11, 32, .97);
+    box-shadow: 0 0 28px #ff5ca833, 8px 8px 0 #080510;
+    padding: clamp(17px, 4vw, 30px);
+  }
+
+  .topline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--cyan);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    color: var(--pink);
+    font-size: clamp(25px, 6vw, 43px);
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 3px 3px 0 #6c2865;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    color: var(--yellow);
+    font-size: clamp(18px, 4vw, 25px);
+  }
+
+  p { line-height: 1.8; }
+
+  .center { text-align: center; }
+
+  .pixel {
+    font-size: clamp(48px, 13vw, 88px);
+    text-align: center;
+    margin: 22px 0;
+    filter: drop-shadow(0 0 12px #ff5ca866);
+    animation: float 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    50% { transform: translateY(-7px); }
+  }
+
+  .muted { color: var(--muted); font-size: 13px; }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 22px 0 10px;
+    color: var(--cyan);
+    font-size: 13px;
+  }
+
+  .track {
+    height: 14px;
+    background: #38294d;
+    border: 2px solid #7d6099;
+    margin-bottom: 24px;
+  }
+
+  .fill {
+    height: 100%;
+    width: 0%;
+    background: var(--pink);
+    transition: width .3s;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .choices {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .choices button { text-align: left; }
+
+  .primary {
+    background: var(--pink);
+    color: #210c27;
+    border-color: #fff3fc;
+    font-weight: bold;
+  }
+
+  .primary:hover {
+    background: #ff8cc2;
+  }
+
+  .notice {
+    min-height: 45px;
+    color: var(--yellow);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 16px 0;
+  }
+
+  .loot {
+    border: 2px dashed var(--yellow);
+    padding: 18px;
+    margin: 22px 0;
+    background: #251a32;
+  }
+
+  .loot p { margin-bottom: 0; }
+
+  .heart { color: var(--pink); }
+
+  .footer {
+    text-align: center;
+    margin-top: 24px;
+    color: #8d7ca9;
+    font-size: 11px;
+  }
+
+  #confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 12px;
+    animation: fall 3s linear forwards;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="confetti" aria-hidden="true"></div>
+
+<main class="game">
+  <div class="topline">
+    <span>★ PIXEL ARCADE ★</span>
+    <span>PLAYER: YOU</span>
+  </div>
+
+  <div class="stats">
+    <span id="levelLabel">LEVEL 00</span>
+    <span>SCORE: <b id="score">000</b></span>
+  </div>
+
+  <div class="track" role="progressbar"
+       aria-label="Progres petualangan"
+       aria-valuemin="0" aria-valuemax="100"
+       aria-valuenow="0" id="progressBar">
+    <div class="fill" id="progress"></div>
+  </div>
+
+  <section class="screen active" id="intro">
+    <div class="pixel">👾💗</div>
+    <h1>FALASIFAH<span class="heart">.exe</span></h1>
+    <p class="center">BIRTHDAY QUEST: SPECIAL EDITION</p>
+    <p class="center muted">
+      A tiny adventure made with a whole lot of love.
+    </p>
+    <div class="loot center">
+      <h2>⚠ SECRET MISSION ⚠</h2>
+      <p>Ada hadiah rahasia yang menunggumu.</p>
+      <p>Selesaikan semua tantangan untuk membukanya!</p>
+    </div>
+    <button class="primary" style="width:100%"
+            onclick="startGame()">
+      ▶ START GAME
+    </button>
+  </section>
+
+  <section class="screen" id="quest">
+    <h2 id="questTitle">MISSION 01</h2>
+    <p id="question"></p>
+    <div class="choices" id="choices"></div>
+    <p class="notice" id="feedback" aria-live="polite"></p>
+    <button id="nextBtn" class="primary"
+            style="width:100%;display:none"
+            onclick="nextMission()">
+      NEXT MISSION →
+    </button>
+  </section>
+
+  <section class="screen" id="chest">
+    <div class="pixel">🗝️</div>
+    <h1>FINAL LEVEL</h1>
+    <p class="center">
+      Semua misi selesai. Kamu berhasil menemukan
+      kunci terakhir!
+    </p>
+    <div class="loot center">
+      <p>LEGENDARY ITEM DETECTED</p>
+      <div class="pixel">🎁</div>
+      <p>ITEM: A GIFT FULL OF LOVE</p>
+    </div>
+    <button class="primary" style="width:100%"
+            onclick="openGift()">
+      🔓 UNLOCK YOUR GIFT
+    </button>
+  </section>
+
+  <section class="screen" id="ending">
+    <div class="pixel">🎂💖🎉</div>
+    <h1>MISSION COMPLETE!</h1>
+    <p class="center">HAPPY BIRTHDAY, FALASIFAH!</p>
+
+    <div class="loot">
+      <h2>💌 A LETTER FOR YOU</h2>
+      <p id="letter">
+        Selamat ulang tahun, FALASIFAH! ❤️
+        <br><br>
+        Hari ini adalah hari spesial karena seseorang
+        yang begitu berarti lahir ke dunia.
+        Aku berharap hari-harimu selalu dipenuhi
+        kebahagiaan, kesehatan, dan hal-hal baik.
+        <br><br>
+        Terima kasih sudah menjadi bagian indah
+        dalam hidupku. Semoga semua impianmu
+        perlahan menjadi nyata.
+        <br><br>
+        Jangan pernah lupa kalau kamu berharga,
+        kamu pantas bahagia, dan kamu layak
+        mendapatkan banyak cinta.
+        <br><br>
+        Happy birthday, my favorite person.
+        I love you, always. 💗
+      </p>
+      <p class="center heart">— WITH LOVE, YOUR PERSON —</p>
+    </div>
+
+    <p class="center" id="finalScore"></p>
+    <button style="width:100%" onclick="restartGame()">
+      ↻ PLAY AGAIN
+    </button>
+  </section>
+
+  <div class="footer">MADE WITH ♥ JUST FOR FALASIFAH</div>
+</main>
+
+<script>
+  // =========================================
+  // EDIT BAGIAN INI UNTUK PERSONALISASI GAME
+  // =========================================
+  const recipient = "FALASIFAH";
+
+  // Ganti pertanyaan dan pilihan sesuai kenangan kalian.
+  // answer adalah indeks jawaban benar: mulai dari 0.
+  const missions = [
+    {
+      title: "MISSION 01 — THE FIRST KEY",
+      question: "Apa hadiah paling berharga dalam sebuah hubungan?",
+      choices: [
+        "Saling memahami dan menghargai",
+        "Selalu harus menang sendiri",
+        "Tidak pernah berbicara",
+        "Saling mengabaikan"
+      ],
+      answer: 0,
+      success: "FIRST KEY UNLOCKED! Kamu mendapat +100 XP 💗"
+    },
+    {
+      title: "MISSION 02 — HEART MEMORY",
+      question: "Apa yang membuat momen bersama seseorang terasa spesial?",
+      choices: [
+        "Harus selalu mahal",
+        "Kenangan kecil yang tulus",
+        "Harus selalu sempurna",
+        "Tidak perlu saling mendengarkan"
+      ],
+      answer: 1,
+      success: "MEMORY CRYSTAL FOUND! +100 XP ✨"
+    },
+    {
+      title: "MISSION 03 — THE FINAL WISH",
+      question: "Apa harapan terbaik untuk ulang tahunmu?",
+      choices: [
+        "Tidak boleh punya mimpi",
+        "Berhenti mencoba hal baru",
+        "Selalu bahagia dan dikelilingi cinta",
+        "Melupakan semua orang"
+      ],
+      answer: 2,
+      success: "GOLDEN KEY ACQUIRED! +100 XP 🎁"
+    }
+  ];
+
+  // Edit surat rahasia di bagian elemen id="letter".
+  // =========================================
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+
+  const $ = id => document.getElementById(id);
+
+  function showScreen(id) {
+    document.querySelectorAll(".screen").forEach(screen => {
+      screen.classList.toggle("active", screen.id === id);
+    });
+  }
+
+  function updateHUD() {
+    $("score").textContent = String(score).padStart(3, "0");
+    $("levelLabel").textContent =
+      "LEVEL " + String(current + 1).padStart(2, "0");
+
+    const completed = current >= missions.length;
+    const percent = completed ? 100 :
+      Math.round((current / missions.length) * 100);
+
+    $("progress").style.width = percent + "%";
+    $("progressBar").setAttribute("aria-valuenow", percent);
+  }
+
+  function startGame() {
+    current = 0;
+    score = 0;
+    updateHUD();
+    renderMission();
+    showScreen("quest");
+  }
+
+  function renderMission() {
+    answered = false;
+    const m = missions[current];
+
+    $("questTitle").textContent = m.title;
+    $("question").textContent = m.question;
+    $("feedback").textContent = "";
+    $("nextBtn").style.display = "none";
+    $("choices").innerHTML = "";
+
+    m.choices.forEach((choice, index) => {
+      const btn = document.createElement("button");
+      btn.textContent = "▶ " + choice;
+      btn.addEventListener("click", () => chooseAnswer(index));
+      $("choices").appendChild(btn);
+    });
+
+    updateHUD();
+  }
+
+  function chooseAnswer(index) {
+    if (answered) return;
+    answered = true;
+
+    const m = missions[current];
+    const buttons = $("choices").querySelectorAll("button");
+
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === m.answer) {
+        btn.style.borderColor = "#ffe66d";
+      }
+    });
+
+    if (index === m.answer) {
+      score += 100;
+      $("feedback").textContent = m.success;
+    } else {
+      $("feedback").textContent =
+        "Belum tepat, tapi petualangan tetap berlanjut! 💜";
+    }
+
+    updateHUD();
+    $("nextBtn").style.display = "block";
+    $("nextBtn").textContent =
+      current === missions.length - 1
+        ? "GO TO FINAL LEVEL →"
+        : "NEXT MISSION →";
+  }
+
+  function nextMission() {
+    current++;
+
+    if (current >= missions.length) {
+      $("levelLabel").textContent = "FINAL LEVEL";
+      $("progress").style.width = "100%";
+      $("progressBar").setAttribute("aria-valuenow", 100);
+      showScreen("chest");
+    } else {
+      renderMission();
+    }
+  }
+
+  function openGift() {
+    $("finalScore").textContent =
+      "FINAL SCORE: " + score + " XP — " +
+      (score === missions.length * 100
+        ? "PERFECT RUN! ⭐"
+        : "QUEST COMPLETED! 💗");
+
+    showScreen("ending");
+    celebrate();
+  }
+
+  function celebrate() {
+    const area = $("confetti");
+    area.innerHTML = "";
+    const colors = ["#ff5ca8", "#58f6ff", "#ffe66d", "#b79aff"];
+
+    for (let i = 0; i < 65; i++) {
+      const piece = document.createElement("span");
+      piece.className = "confetti-piece";
+      piece.style.left = Math.random() * 100 + "%";
+      piece.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = Math.random() * 1.5 + "s";
+      piece.style.animationDuration = (2 + Math.random() * 2) + "s";
+      area.appendChild(piece);
+    }
+
+    setTimeout(() => { area.innerHTML = ""; }, 5000);
+  }
+
+  function restartGame() {
+    $("confetti").innerHTML = "";
+    current = 0;
+    score = 0;
+    updateHUD();
+    showScreen("intro");
+  }
+
+  // Terapkan nama penerima dari konfigurasi.
+  document.title = recipient + ".exe | Birthday Quest";
+  $("letter").innerHTML =
+    $("letter").innerHTML.replaceAll("FALASIFAH", recipient);
+  document.querySelector(".footer").textContent =
+    "MADE WITH ♥ JUST FOR " + recipient;
+</script>
+</body>
+</html>
