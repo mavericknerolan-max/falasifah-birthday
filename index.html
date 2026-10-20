@@ -5,104 +5,316 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Little Universe for Falasifah ♡</title>
 <style>
-:root{--ink:#fff8f7;--muted:#d9c7db;--pink:#ffb7d5;--rose:#ff6fae;--lilac:#c4a7ff;--night:#100c25;--panel:#21183c;--gold:#ffe6a6;--mint:#a7f3dc}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
-button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}.stars-bg{position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 15% 10%,#4a2869 0,transparent 35%),radial-gradient(ellipse at 85% 40%,#253e68 0,transparent 32%),linear-gradient(160deg,#100c25,#1b1234 55%,#111b35)}
-#sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 5%;background:#100c25d9;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff18}
-.brand{font-weight:900;letter-spacing:.04em;color:var(--pink)}nav .links{display:flex;gap:16px;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}nav a:hover{color:white}
-.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:80px 20px 100px;position:relative;overflow:hidden}
-.hero-inner{max-width:900px;position:relative;z-index:1}.kicker{text-transform:uppercase;letter-spacing:.24em;font-size:.75rem;font-weight:800;color:var(--mint)}
-h1,h2,h3,p{margin-top:0}h1{font-size:clamp(3rem,9vw,7.5rem);line-height:.98;letter-spacing:-.065em;margin:22px 0;background:linear-gradient(100deg,#fff 15%,#ffc3e0 48%,#c6b5ff 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{max-width:650px;margin:0 auto 28px;color:#e2d8ed;font-size:clamp(1rem,2vw,1.2rem)}
-.orbit{font-size:clamp(4rem,10vw,7rem);display:inline-block;filter:drop-shadow(0 0 28px #ff7bbd99);animation:float 4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-14px) rotate(7deg)}}@keyframes glow{50%{box-shadow:0 0 45px #ff80bd66}}@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #ffffff35;border-radius:999px;padding:13px 22px;color:#20122f;font-weight:900;background:linear-gradient(110deg,var(--pink),var(--lilac));box-shadow:0 8px 30px #df8dca30;transition:.2s}
-.btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 35px #df8dca55}.btn.ghost{background:#ffffff0c;color:var(--ink);box-shadow:none}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.scroll-note{position:absolute;bottom:25px;color:#cbbbdc;font-size:.8rem;letter-spacing:.15em}
-section{padding:80px 5%;scroll-margin-top:75px}.section-head{text-align:center;max-width:750px;margin:0 auto 35px}.section-head h2{font-size:clamp(2rem,5vw,3.7rem);line-height:1.08;letter-spacing:-.04em;margin:12px 0}.section-head p{color:var(--muted)}
-.panel{background:linear-gradient(145deg,#ffffff12,#ffffff06);border:1px solid #ffffff20;border-radius:28px;box-shadow:0 25px 80px #00000020;backdrop-filter:blur(12px)}
-.letter{max-width:850px;margin:auto;padding:clamp(25px,6vw,55px);position:relative;overflow:hidden}.letter:after{content:"✦";position:absolute;right:28px;top:14px;font-size:5rem;color:#ffffff0b}.letter p{color:#eee3f4;font-size:1.05rem}.letter .salute{font-size:1.6rem;color:var(--pink);font-weight:900}.signature{color:var(--mint)!important}
-.poem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1100px;margin:auto}.poem{padding:26px;min-height:300px;position:relative;overflow:hidden;transition:.25s}.poem:hover{transform:translateY(-7px);border-color:#ffb7d566}.poem .symbol{font-size:2.5rem}.poem h3{color:var(--pink);margin:8px 0 16px}.poem p{white-space:pre-line;color:#e5d9ee}.poem small{color:var(--mint)}
-.game-section{background:linear-gradient(180deg,transparent,#17122d 15%,#17122d 85%,transparent)}
-.levels{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 24px}.level-chip{border:1px solid #ffffff25;color:#cdbfdd;border-radius:999px;padding:8px 15px;font-size:.85rem;background:#ffffff08}.level-chip.active{background:var(--pink);color:#24132f;border-color:transparent;font-weight:900}.level-chip.done{border-color:var(--mint);color:var(--mint)}
-.game-shell{max-width:1000px;margin:auto;padding:clamp(15px,3vw,28px)}.game-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.game-title{margin:0;font-size:1.35rem}.stats{display:flex;gap:8px;flex-wrap:wrap}.stat{padding:7px 12px;border-radius:12px;background:#ffffff0d;border:1px solid #ffffff14;color:#f9e8ff;font-size:.85rem}
-canvas{width:100%;height:auto;display:block;border-radius:20px;border:1px solid #ffffff2b;background:#14152e;touch-action:pan-y}
-.game-help{text-align:center;color:#cdbfdd;font-size:.85rem;margin:13px 0}.game-controls{display:flex;justify-content:center;gap:10px;margin:14px 0}.game-controls button{width:58px;height:48px;border-radius:14px;border:1px solid #ffffff30;background:#ffffff10;color:white;font-size:1.2rem;touch-action:none}
-.game-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px}
-.message{display:none;margin:20px auto 0;max-width:760px;padding:28px;text-align:center;border:1px solid #ffb7d555;background:linear-gradient(135deg,#ffb7d51b,#c4a7ff14);border-radius:24px;animation:rise .5s ease}.message.show{display:block}.message .big{font-size:2.7rem}.message h3{font-size:1.5rem;color:var(--pink);margin:5px 0 10px}.message p{color:#eee3f4}.message .poem-line{white-space:pre-line;font-family:Georgia,serif;font-style:italic;font-size:1.05rem;color:var(--gold)}
-.memory-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:700px;margin:20px auto}.memory-card{aspect-ratio:1/1;border-radius:16px;border:1px solid #ffffff30;background:linear-gradient(140deg,#34254e,#211a40);color:white;font-size:clamp(1.5rem,5vw,2.7rem);display:grid;place-items:center;transition:transform .2s,background .2s;min-height:70px}.memory-card:hover{transform:translateY(-3px)}.memory-card.revealed,.memory-card.matched{background:linear-gradient(145deg,#ffb7d5,#c4a7ff);color:#251631}.memory-card.matched{box-shadow:0 0 22px #a7f3dc35;border-color:var(--mint)}
-.dodge-wrap{max-width:850px;margin:20px auto}.dodge-hint{text-align:center;color:var(--muted)}
-.final-card{max-width:850px;margin:auto;text-align:center;padding:clamp(28px,6vw,60px);position:relative;overflow:hidden}.final-card h2{font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05;color:var(--pink)}.final-card p{color:#e8ddef}.final-heart{font-size:4rem;animation:float 3s infinite}
-footer{text-align:center;padding:50px 20px;color:#cdbfdd;border-top:1px solid #ffffff13}footer strong{color:var(--pink)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#fff3fa;color:#291735;padding:12px 18px;border-radius:999px;z-index:40;opacity:0;pointer-events:none;transition:.3s;font-weight:800;box-shadow:0 10px 40px #0005}.toast.show{opacity:1;transform:translate(-50%,0)}
-#soundBtn{position:fixed;right:16px;bottom:16px;z-index:25;border-radius:999px;background:#25183f;color:white;border:1px solid #ffffff35;padding:11px 15px;box-shadow:0 8px 28px #0005}
-#burst{position:fixed;inset:0;pointer-events:none;z-index:35;overflow:hidden}.particle{position:absolute;top:-30px;animation:fall linear forwards;font-size:20px}
-@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:0}}
-@media(max-width:760px){nav{align-items:flex-start;flex-direction:column}.poem-grid{grid-template-columns:1fr}.poem{min-height:unset}.memory-board{gap:7px}.game-shell{padding:12px}.hero{min-height:80vh}.section-head{margin-bottom:25px}section{padding:60px 5%}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition:none!important}}
-
-/* cinematic portal + constellation upgrade */
-.portal-intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 43%,#50306e 0,#1a1235 42%,#090817 100%);transition:opacity .9s ease,visibility .9s ease;overflow:hidden}
-.portal-intro:before,.portal-intro:after{content:"";position:absolute;width:min(80vw,650px);aspect-ratio:1;border:1px solid #ffb7d54d;border-radius:50%;box-shadow:0 0 70px #c4a7ff1c,inset 0 0 70px #c4a7ff14;animation:portalSpin 28s linear infinite;pointer-events:none}.portal-intro:after{width:min(65vw,500px);border-color:#a7f3dc4a;animation-direction:reverse;animation-duration:20s}.portal-intro>*{position:relative;z-index:1}.portal-intro.closed{opacity:0;visibility:hidden;pointer-events:none}.portal-intro h1{font-size:clamp(3.5rem,10vw,7rem);margin:18px 0}.portal-intro p{max-width:470px;color:#e7d9f2;margin:0 auto 24px}.portal-intro small{display:block;margin-top:18px;color:#bdaecc;font-size:.75rem}.portal-orbit{position:relative;width:120px;height:120px;display:grid;place-items:center;border:1px solid #ffb7d588;border-radius:50%;box-shadow:0 0 45px #ffb7d533;animation:float 4s ease-in-out infinite}.portal-orbit b{font-size:3.5rem;color:#ffb7d5;text-shadow:0 0 28px #ffb7d5}.portal-orbit span,.portal-orbit i{position:absolute;color:#ffe6a6;font-size:1.7rem}.portal-orbit span{top:2px;left:8px}.portal-orbit i{right:5px;bottom:2px}@keyframes portalSpin{to{transform:rotate(360deg)}}
-.constellation-panel{max-width:1000px;margin:auto;padding:clamp(14px,3vw,26px);overflow:hidden}.constellation-sky{height:360px;position:relative;overflow:hidden;border-radius:22px;background:radial-gradient(ellipse at 50% 50%,#3d2c69,#17132f 68%);border:1px solid #ffffff20}.constellation-sky:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#ffffff77 1px,transparent 1px);background-size:43px 43px,67px 67px;background-position:0 0,17px 21px;opacity:.35}
-.constellation-lines{position:absolute;inset:0;width:100%;height:100%}.constellation-lines path{fill:none;stroke:#d5b4ff;stroke-width:1.5;stroke-dasharray:5 7;opacity:.45}
-.constellation-star{position:absolute;z-index:2;border:0;background:transparent;color:#ffe6a6;font-size:2.1rem;text-shadow:0 0 20px #fff;filter:drop-shadow(0 0 7px #ffb7d5);transition:.2s}.constellation-star:hover{transform:scale(1.3)}.constellation-star span{display:block;color:#f8e9fa;font-size:.7rem;text-shadow:none;white-space:nowrap}.s1{left:9%;top:53%}.s2{left:23%;top:17%}.s3{left:39%;top:43%}.s4{left:53%;top:13%}.s5{left:70%;top:40%}.s6{left:86%;top:67%}.constellation-message{margin-top:16px;display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:18px;background:#ffffff0c;border:1px solid #ffffff20}.constellation-message span{font-size:1.8rem}.constellation-message p{margin:0;color:#eee3f4}
-@media(max-width:600px){.constellation-sky{height:300px}.constellation-star{font-size:1.6rem}.constellation-star span{font-size:.58rem}.s1{left:4%;top:55%}.s2{left:18%;top:15%}.s3{left:35%;top:44%}.s4{left:49%;top:12%}.s5{left:66%;top:39%}.s6{left:81%;top:66%}}
-
-/* soft pink theme */
-:root{--ink:#76556d;--muted:#a88ca4;--pink:#f5b8d1;--rose:#e69cbd;--lilac:#d9c8f5;--night:#fff7fb;--panel:#fffafd;--gold:#dba86b;--mint:#b7e8d8}
-body{background:#fff5fa;color:#563e53;background-image:radial-gradient(ellipse at 8% 8%,#ffe1ed 0,transparent 33%),radial-gradient(ellipse at 92% 25%,#eee3ff 0,transparent 30%),radial-gradient(ellipse at 50% 70%,#fff0f5 0,transparent 38%)}
-.stars-bg{background:radial-gradient(ellipse at 15% 10%,#ffe2ee 0,transparent 38%),radial-gradient(ellipse at 85% 40%,#eee4ff 0,transparent 34%),linear-gradient(160deg,#fff8fb,#fff0f6 52%,#f8f3ff)}
-#sky{opacity:.55;mix-blend-mode:multiply}
-nav{background:#fff8f4d9;border-bottom:1px solid #f3d6e4;box-shadow:0 5px 24px #a8668b0b}
-.brand{color:#bc6d96}nav .links{color:#8f7188}nav a:hover{color:#c46f9c}
-.hero{background:radial-gradient(ellipse at 50% 42%,#fffafdcc 0,transparent 55%)}
-.kicker{color:#bd7198}h1{background:linear-gradient(100deg,#c86f9b 10%,#e99ebd 48%,#9f89c8 90%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 8px 35px #edb9d326}
-.hero p{color:#80677d}.orbit{filter:drop-shadow(0 0 28px #ffb9d9aa)}
-.btn{border-color:#f4d1e0;color:#70435f;background:linear-gradient(110deg,#ffd9e8,#eadfff);box-shadow:0 8px 25px #dc8db52b}.btn:hover{box-shadow:0 12px 35px #dc8db54a}.btn.ghost{background:#fffafdc9;color:#855875;border-color:#ebcadd}
-.scroll-note{color:#a7829b}
-.section-head p{color:#8e7589}.panel{background:linear-gradient(145deg,#ffffffed,#fff8fcdf);border:1px solid #f1d7e5;box-shadow:0 22px 65px #c88bab17;backdrop-filter:blur(14px)}
-.letter:after{color:#f6e3ed}.letter p{color:#70596e}.letter .salute{color:#c16e98}.signature{color:#a36b9a!important}
-.poem{background:linear-gradient(145deg,#fffafd,#fff1f7)}.poem h3{color:#bd6e98}.poem p{color:#745b73}.poem small{color:#9a78ad}.poem:before{content:'✧';position:absolute;right:18px;bottom:0;font-size:6rem;color:#f6dbe8;pointer-events:none}
-.game-section{background:linear-gradient(180deg,transparent,#fff0f7 15%,#fff0f7 85%,transparent)}
-.level-chip{border:1px solid #f0cfe0;color:#916d88;background:#fffafd}.level-chip.active{background:linear-gradient(100deg,#f8bfd8,#e3d3ff);color:#70435f}.level-chip.done{border-color:#9bd6c2;color:#548b79}
-.stat{background:#fff6fb;border-color:#f0d9e7;color:#795a75}.game-help{color:#8e7589}.game-controls button{border-color:#eccfe0;background:#fff9fc;color:#a15e86;box-shadow:0 5px 15px #bd7e9d14}.message{border-color:#edbfd5;background:linear-gradient(135deg,#fff0f7,#f6f0ff);box-shadow:0 12px 35px #d38eb51c}.message h3{color:#bd6e98}.message p{color:#70596e}.message .poem-line{color:#a16c98}
-.memory-card{border-color:#f0cfe0;background:linear-gradient(140deg,#f8d7e7,#e8defb);color:#956287;box-shadow:0 7px 18px #c783a71c}.memory-card.revealed,.memory-card.matched{background:linear-gradient(145deg,#ffd6e7,#e7dcff);color:#70435f}.memory-card.matched{box-shadow:0 0 22px #9bd6c233;border-color:#9bd6c2}
-.final-card h2{color:#c16e98}.final-card p{color:#755c73}.final-heart{filter:drop-shadow(0 8px 18px #e9a0c45c)}footer{color:#977b91;border-color:#f0d9e7}footer strong{color:#bd6e98}
-.toast{background:#fffafd;color:#70435f;border:1px solid #f0cfe0}#soundBtn{background:#fffafd;color:#946286;border:1px solid #eccfe0;box-shadow:0 8px 28px #c783a71c}
-.portal-intro{background:radial-gradient(circle at 50% 43%,#fffafd 0,#ffe5f0 43%,#f2eaff 100%)}
-.portal-intro:before,.portal-intro:after{border-color:#e9a8c94d;box-shadow:0 0 70px #e8b4d51c,inset 0 0 70px #d7c3f714}.portal-intro:after{border-color:#c8b3e84a}.portal-intro p{color:#856780}.portal-intro small{color:#a27f98}.portal-orbit{border-color:#e6a8c988;box-shadow:0 0 45px #ffb7d533}.portal-orbit b{color:#d67ca7;text-shadow:0 0 28px #ffb7d5}.portal-orbit span,.portal-orbit i{color:#c6a3d9}
-.constellation-sky{background:radial-gradient(ellipse at 50% 50%,#f4d5e8,#e7ddf7 68%);border-color:#edc9dd;box-shadow:inset 0 0 50px #fff8fc}.constellation-sky:before{background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#d5b1cf 1px,transparent 1px);opacity:.75}.constellation-lines path{stroke:#bd8db7;opacity:.7}.constellation-star{color:#d88ab0;text-shadow:0 0 20px #fff;filter:drop-shadow(0 0 7px #e7a9c9)}.constellation-star span{color:#795b78}.constellation-message{background:#fff9fce8;border-color:#efcfe0}.constellation-message p{color:#765873}
-/* ornaments: floating petals, hearts and tiny twinkles */
-.ornament-layer{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}.ornament{position:absolute;opacity:.5;animation:ornamentDrift var(--dur,12s) ease-in-out infinite;animation-delay:var(--delay,0s);filter:drop-shadow(0 4px 8px #e3a4c52b);user-select:none}.ornament:nth-child(1){left:3%;top:19%;font-size:25px}.ornament:nth-child(2){right:5%;top:30%;font-size:22px}.ornament:nth-child(3){left:6%;top:64%;font-size:20px}.ornament:nth-child(4){right:7%;top:74%;font-size:28px}.ornament:nth-child(5){left:48%;top:8%;font-size:17px}.ornament:nth-child(6){right:25%;top:54%;font-size:19px}.ornament:nth-child(7){left:22%;top:85%;font-size:24px}.ornament:nth-child(8){right:17%;top:11%;font-size:16px}
-@keyframes ornamentDrift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-24px) rotate(12deg)}}
-section{position:relative}section:not(.game-section):after{content:'✧  ·  ♡  ·  ✧';position:absolute;bottom:17px;left:50%;transform:translateX(-50%);white-space:nowrap;letter-spacing:.55em;color:#e6b8d0;font-size:.8rem;opacity:.8;pointer-events:none}
-/* a soft pause for noisy thoughts */
-.calm-section{background:linear-gradient(180deg,transparent,#fceaf3 18%,#fceaf3 82%,transparent)}.calm-card{max-width:900px;margin:auto;padding:clamp(24px,5vw,44px);text-align:center}.calm-card h2{font-size:clamp(2rem,5vw,3.2rem);color:#bd6e98}.calm-card p{color:#7d6278}.breath-orb{width:150px;height:150px;border-radius:50%;margin:25px auto;display:grid;place-items:center;background:radial-gradient(circle,#fffafd 0,#ffd9e9 54%,#e6d8ff 100%);border:1px solid #efc7dc;box-shadow:0 0 0 12px #f7d9e733,0 0 55px #e8a5c544;color:#9c6487;font-weight:800;transition:transform 4s ease-in-out}.breath-orb.inhale{transform:scale(1.22)}.breath-orb.exhale{transform:scale(.88)}.calm-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0}.feeling-btn{border:1px solid #efcfe0;border-radius:999px;padding:10px 15px;background:#fffafd;color:#946786}.feeling-btn:hover,.feeling-btn:focus{background:#ffe3ef;outline:2px solid #e7b4d0}.calm-note{margin:18px auto 0;max-width:650px;padding:18px;background:#fffafd;border:1px dashed #e7b9d2;border-radius:18px;color:#795b75;min-height:64px}
-@media(max-width:760px){.ornament{opacity:.3}.breath-orb{width:125px;height:125px}}
-
-.creator-credit{margin:10px 0 0;color:#9d7594;font-size:.95rem;letter-spacing:.08em}.creator-credit strong{color:#c66d9c}.brand-by{font-size:.72rem;font-weight:600;letter-spacing:0;color:#a77899;margin-left:5px}
-.ticket-wallet{margin:22px auto 0;max-width:940px;padding:22px;background:#fff8fc;border:1px solid #efcfe0;border-radius:24px;color:#77566f}.ticket-wallet h3{margin:0 0 6px;color:#bd6e98}.ticket-wallet>p{margin:0 0 16px;color:#987b92;font-size:.9rem}.ticket-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.love-ticket{position:relative;min-height:150px;padding:16px 12px;border-radius:18px;border:2px dashed #e5b4cf;background:linear-gradient(145deg,#fffafd,#ffeaf3);color:#825c7a;text-align:center;overflow:hidden;opacity:.55;filter:saturate(.55);transition:.3s}.love-ticket.unlocked{opacity:1;filter:none;box-shadow:0 8px 24px #d99cbe30;animation:ticketPop .45s ease both}.love-ticket.unlocked:before{content:'VALID ♡';position:absolute;top:9px;right:-24px;transform:rotate(30deg);background:#d78db2;color:white;font-size:.56rem;font-weight:900;padding:2px 26px}.love-ticket .ticket-emoji{display:block;font-size:2rem;margin:5px}.love-ticket strong{display:block;color:#a75f8a}.love-ticket small{display:block;margin-top:6px;font-size:.72rem}.love-ticket button{margin-top:9px;border:1px solid #e5b4cf;border-radius:99px;background:#fff;color:#9b5e83;padding:6px 10px;font-size:.75rem}.ticket-game{padding:22px;border-radius:22px;background:radial-gradient(circle at top,#ffe5f1,#f4e9ff);color:#835d7c;text-align:center}.ticket-game h3{color:#b86694}.ticket-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px auto;max-width:720px}.ticket-pick{min-height:100px;border:2px dashed #e0a9c8;border-radius:18px;background:#fffafd;color:#bb6e9a;font-size:2rem;box-shadow:0 6px 16px #c987ad20;transition:.2s}.ticket-pick:hover{transform:translateY(-4px) rotate(-2deg)}.ticket-pick.found{background:#dff8ee;border-color:#8ccdb5;opacity:.7}.ticket-redeem{max-width:700px;margin:18px auto 0;padding:20px;border-radius:20px;background:#fffafd;border:1px solid #efcfe0;color:#805d79;text-align:left}.ticket-redeem h4{color:#b86694;margin:0 0 8px}.ticket-redeem li{margin:5px 0}.ticket-redeem-note{font-size:.8rem;color:#9b7d92;margin-top:12px}@keyframes ticketPop{from{transform:scale(.8) rotate(-3deg);opacity:.3}to{transform:scale(1) rotate(0);opacity:1}}
-@media(max-width:760px){.ticket-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ticket-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+:root {
+  --pink: #f5b8d1;
+  --rose: #e69cbd;
+  --lilac: #d9c8f5;
+  --bg: #fff5fa;
+  --text: #76556d;
+  --muted: #a88ca4;
+  --border: #efcfe0;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 8% 8%, #ffe1ed, transparent 33%),
+    radial-gradient(ellipse at 92% 25%, #eee3ff, transparent 30%),
+    #fff7fb;
+  color: var(--text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 5%;
+  background: #fff8f4eF;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #f3d6e4;
+}
+.brand {
+  font-weight: 900;
+  color: #bc6d96;
+}
+nav .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: .85rem;
+  color: #8f7188;
+}
+.hero {
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 70px 20px 90px;
+  position: relative;
+}
+.hero-inner {
+  max-width: 850px;
+}
+.kicker {
+  color: #bd7198;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .75rem;
+  font-weight: 800;
+}
+h1 {
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+  background: linear-gradient(100deg, #c86f9b, #e99ebd, #9f89c8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p {
+  max-width: 650px;
+  margin: 0 auto 28px;
+  color: #80677d;
+}
+.orbit {
+  font-size: 6rem;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px #ffb9d9);
+}
+@keyframes float {
+  50% { transform: translateY(-14px) rotate(7deg); }
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #f4d1e0;
+  border-radius: 999px;
+  padding: 13px 22px;
+  color: #70435f;
+  font-weight: 900;
+  background: linear-gradient(110deg, #ffd9e8, #eadfff);
+  box-shadow: 0 8px 25px #dc8db52b;
+  transition: .2s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px #dc8db54a;
+}
+section {
+  padding: 75px 5%;
+  scroll-margin-top: 75px;
+}
+.section-head {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 35px;
+}
+.section-head h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+.section-head p {
+  color: var(--muted);
+}
+.panel {
+  background: linear-gradient(145deg, #fffafd, #fff1f7);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  box-shadow: 0 22px 65px #c88bab17;
+}
+.letter {
+  max-width: 850px;
+  margin: auto;
+  padding: clamp(25px, 6vw, 55px);
+}
+.letter p {
+  color: #70596e;
+  font-size: 1.05rem;
+}
+.salute {
+  font-size: 1.6rem;
+  color: #c16e98 !important;
+  font-weight: 900;
+}
+.signature {
+  color: #a36b9a !important;
+}
+.poem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  margin: auto;
+}
+.poem {
+  padding: 26px;
+  min-height: 300px;
+  transition: .25s;
+}
+.poem:hover {
+  transform: translateY(-7px);
+}
+.poem .symbol {
+  font-size: 2.5rem;
+}
+.poem h3 {
+  color: #bd6e98;
+}
+.poem p {
+  white-space: pre-line;
+  color: #745b73;
+}
+.creator-credit {
+  margin: 10px 0;
+  color: #9d7594;
+  letter-spacing: .08em;
+}
+.creator-credit strong {
+  color: #c66d9c;
+}
+footer {
+  text-align: center;
+  padding: 45px 20px;
+  color: #977b91;
+  border-top: 1px solid #f0d9e7;
+}
+footer strong {
+  color: #bd6e98;
+}
+@media(max-width:760px) {
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .poem-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    min-height: 80vh;
+  }
+  section {
+    padding: 55px 5%;
+  }
+}
 </style>
 </head>
 <body>
-<div id="portalIntro" class="portal-intro">
-  <div class="portal-orbit"><span>✦</span><b>♡</b><i>✧</i></div>
+
+<div id="portalIntro" style="
+position:fixed;inset:0;z-index:100;
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;
+text-align:center;padding:24px;
+background:radial-gradient(circle,#fffafd,#ffe5f0 55%,#f2eaff);
+">
+  <div style="font-size:5rem">🌸♡🌸</div>
   <div class="kicker">a universe made just for you</div>
-  <div class="creator-credit">made with ♡ by <strong>Kafaniel</strong></div>
+  <p class="creator-credit">made with ♡ by <strong>Kafaniel</strong></p>
   <h1>Hi, Falasifah.</h1>
   <p>Ada satu semesta kecil yang ingin mengingatkanmu betapa berharganya kamu.</p>
-  <button class="btn portal-open" id="enterPortal">Buka semestamu <span>✧</span></button>
-  <small>pakai volume kalau ingin mendengar musik ♡</small>
+  <button class="btn" onclick="
+    document.getElementById('portalIntro').style.display='none';
+    document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+  ">Buka semestamu ✧</button>
 </div>
-<div class="stars-bg"></div><canvas id="sky"></canvas><div class="ornament-layer" aria-hidden="true"><span class="ornament" style="--dur:11s">♡</span><span class="ornament" style="--dur:13s;--delay:-3s">✿</span><span class="ornament" style="--dur:15s;--delay:-5s">✧</span><span class="ornament" style="--dur:12s;--delay:-2s">୨୧</span><span class="ornament" style="--dur:14s;--delay:-4s">⋆</span><span class="ornament" style="--dur:10s;--delay:-1s">❀</span><span class="ornament" style="--dur:16s;--delay:-6s">♡</span><span class="ornament" style="--dur:12s;--delay:-2s">✦</span></div><div id="burst"></div>
-<nav><a class="brand" href="#top">✦ A LITTLE UNIVERSE <span class="brand-by">by Kafaniel</span></a><div class="links"><a href="#letter">Surat</a><a href="#poems">Puisi</a><a href="#softpause">Tempat rehat</a><a href="#adventure">Petualangan</a><a href="#final">Pesan terakhir</a></div></nav>
-<header class="hero" id="top"><div class="hero-inner"><div class="orbit">🌙</div><div class="kicker">a tiny universe made just for you</div><h1>Falasifah,<br>you are a wonder.</h1><p>Di antara jutaan bintang, ada satu semesta kecil yang sengaja dibuat untuk mengingatkanmu: kamu berharga, kamu tidak harus kuat setiap waktu, dan kamu pantas bahagia.</p><a class="btn" href="#letter">Masuk ke semestamu ♡</a></div><div class="scroll-note">SCROLL PELAN-PELAN · ADA KEJUTAN DI DALAMNYA ↓</div></header>
-<section id="letter"><div class="section-head"><div class="kicker">01 · a letter from the heart</div><h2>Untuk kamu, yang sering lupa betapa hebatnya dirimu.</h2><p>Baca saat kamu punya waktu untuk berhenti sebentar dan bernapas.</p></div><article class="panel letter"><p class="salute">Hai, Falasifah. ♡</p><p>Aku harap kamu tahu bahwa kamu tidak perlu selalu terlihat baik-baik saja untuk tetap menjadi seseorang yang luar biasa. Ada hari ketika kamu bersinar, ada hari ketika kamu hanya sanggup bertahan—dan dua-duanya tetap berarti.</p><p>Kamu tidak harus membuktikan nilai dirimu lewat pencapaian, senyum, atau seberapa banyak kamu bisa membantu orang lain. Kamu berhak mendapat kasih sayang bahkan saat sedang lelah, bingung, takut, atau belum menemukan jawabannya.</p><p>Kalau dunia terasa terlalu ramai, semoga kamu ingat bahwa kamu boleh berhenti sejenak. Kamu boleh meminta ditemani. Kamu boleh memulai lagi. Kamu tidak harus menghadapi semuanya sendirian. Kalau pikiran terasa terlalu berat, kamu boleh menghubungi seseorang yang kamu percaya dan meminta ditemani—kamu tidak perlu menunggu sampai semuanya terasa parah untuk meminta dukungan.</p><p>Semoga hidup memberimu ruang untuk tumbuh, orang-orang yang merayakan keberadaanmu, dan kebahagiaan yang tidak membuatmu harus mengecilkan diri sendiri.</p><p class="signature">Peluk jauh untukmu. Semoga kamu selalu menemukan jalan pulang kepada dirimu sendiri. ♡</p></article></section>
-<section id="poems"><div class="section-head"><div class="kicker">02 · little poems for you</div><h2>Beberapa baris, untuk mengagumimu.</h2><p>Karena kadang, perasaan yang besar ingin disampaikan dengan kata-kata yang lembut.</p></div><div class="poem-grid">
-<article class="panel poem"><div class="symbol">✦</div><h3>Seperti Bintang</h3><p>Kamu tak harus paling terang,
+
+<nav>
+  <a class="brand" href="#top">✦ A LITTLE UNIVERSE ♡</a>
+  <div class="links">
+    <a href="#letter">Surat</a>
+    <a href="#poems">Puisi</a>
+    <a href="#adventure">Petualangan</a>
+    <a href="#final">Pesan terakhir</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="orbit">🌙</div>
+    <div class="kicker">a tiny universe made just for you</div>
+    <h1>Falasifah,<br>you are a wonder.</h1>
+    <p>
+      Di antara jutaan bintang, ada satu semesta kecil
+      yang sengaja dibuat untuk mengingatkanmu:
+      kamu berharga, kamu tidak harus kuat setiap waktu,
+      dan kamu pantas bahagia.
+    </p>
+    <a class="btn" href="#letter">Masuk ke semestamu ♡</a>
+  </div>
+</header>
+
+<section id="letter">
+  <div class="section-head">
+    <div class="kicker">01 · a letter from the heart</div>
+    <h2>Untuk kamu, yang sering lupa betapa hebatnya dirimu.</h2>
+    <p>Baca saat kamu punya waktu untuk berhenti sebentar dan bernapas.</p>
+  </div>
+  <article class="panel letter">
+    <p class="salute">Hai, Falasifah. ♡</p>
+    <p>
+      Aku harap kamu tahu bahwa kamu tidak perlu selalu
+      terlihat baik-baik saja untuk tetap menjadi seseorang
+      yang luar biasa. Ada hari ketika kamu bersinar,
+      ada hari ketika kamu hanya sanggup bertahan
+      dan dua-duanya tetap berarti.
+    </p>
+    <p>
+      Kamu tidak harus membuktikan nilai dirimu lewat
+      pencapaian, senyum, atau seberapa banyak kamu bisa
+      membantu orang lain. Kamu berhak mendapat kasih sayang
+      bahkan saat sedang lelah, bingung, takut, atau belum
+      menemukan jawabannya.
+    </p>
+    <p>
+      Kalau dunia terasa terlalu ramai, kamu boleh berhenti
+      sejenak. Kamu boleh meminta ditemani. Kamu boleh
+      memulai lagi. Kamu tidak harus menghadapi semuanya
+      sendirian.
+    </p>
+    <p>
+      Semoga hidup memberimu ruang untuk tumbuh,
+      orang-orang yang merayakan keberadaanmu, dan
+      kebahagiaan yang tidak membuatmu harus mengecilkan diri.
+    </p>
+    <p class="signature">
+      Peluk jauh untukmu. Semoga kamu selalu menemukan
+      jalan pulang kepada dirimu sendiri. ♡
+    </p>
+  </article>
+</section>
+
+<section id="poems">
+  <div class="section-head">
+    <div class="kicker">02 · little poems for you</div>
+    <h2>Beberapa baris, untuk mengagumimu.</h2>
+    <p>Karena kadang, perasaan yang besar ingin disampaikan dengan kata-kata lembut. note : walau aku tidak sejago itu </p>
+  </div>
+  <div class="poem-grid">
+    <article class="panel poem">
+      <div class="symbol">✦</div>
+      <h3>Seperti Bintang</h3>
+      <p>Kamu tak harus paling terang,
 untuk pantas dipandang.
 Bahkan saat cahayamu redup,
 langit tak pernah mengusirmu.
@@ -110,125 +322,804 @@ langit tak pernah mengusirmu.
 Jadi istirahatlah,
 bila malam terasa panjang.
 Kamu tetap bintang,
-meski hari ini tak gemilang.</p><small>— untuk hari yang berat</small></article>
-<article class="panel poem"><div class="symbol">♡</div><h3>Betapa Hebatnya Kamu</h3><p>Aku mengagumi caramu bertahan,
+meski hari ini tak gemilang.</p>
+    </article>
+    <article class="panel poem">
+      <div class="symbol">♡</div>
+      <h3>Betapa Hebatnya Kamu</h3>
+      <p>Aku mengagumi caramu bertahan,
 meski tak semua luka kau ceritakan.
 Caramu mencoba sekali lagi,
 meski takut masih tinggal di hati.
 
-Semoga suatu hari kau melihat,
-dirimu dengan mata yang hangat:
-bukan kurang, bukan terlambat—
-hanya manusia yang terus bertumbuh hebat.</p><small>— untuk dirimu sendiri</small></article>
-<article class="panel poem"><div class="symbol">☾</div><h3>Kamu Pantas Bahagia</h3><p>Semoga bahagia datang tanpa syarat,
+Kamu sedang bertumbuh,
+meski prosesnya belum selalu terlihat.
+Kamu tetap hebat,
+bahkan saat merasa lelah.</p>
+    </article>
+    <article class="panel poem">
+      <div class="symbol">☾</div>
+      <h3>Kamu Pantas Bahagia</h3>
+      <p>Semoga bahagia datang tanpa syarat,
 tanpa harus lelah menjadi kuat.
 Semoga ada tangan yang menggenggam,
 saat isi kepala terasa tenggelam.
 
-Dan bila tak ada yang berkata hari ini,
-biar puisi kecil ini menemani:
-kamu layak dicintai,
-termasuk oleh dirimu sendiri.</p><small>— simpan untuk nanti</small></article>
-</div></section>
-<section id="constellation"><div class="section-head"><div class="kicker">03 · a constellation of you</div><h2>Konstelasi Hal-Hal Hebat tentang Kamu ✨</h2><p>Sentuh bintang-bintang di langit ini satu per satu. Masing-masing menyimpan pengingat kecil yang mungkin perlu kamu dengar.</p></div>
-<div class="panel constellation-panel"><div class="constellation-sky" id="constellationSky"><svg class="constellation-lines" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path d="M100 210 L230 95 L370 180 L490 75 L640 170 L790 95 L820 260 L640 170 L590 290 L370 180 L260 285 L100 210"/></svg>
-<button class="constellation-star s1" data-note="Kamu punya cara sendiri untuk membuat dunia terasa lebih hangat. Jangan remehkan kebaikan kecil yang kamu lakukan.">✦<span>kebaikanmu</span></button>
-<button class="constellation-star s2" data-note="Kamu sudah melewati hari-hari yang dulu mungkin terasa mustahil. Itu bukan hal kecil. Itu bukti bahwa kamu terus berusaha.">✧<span>keteguhanmu</span></button>
-<button class="constellation-star s3" data-note="Kamu tidak harus selalu kuat. Beristirahat bukan menyerah, dan meminta bantuan bukan berarti kamu lemah.">✦<span>keberanianmu</span></button>
-<button class="constellation-star s4" data-note="Ada hal-hal indah tentang dirimu yang mungkin belum kamu sadari. Kamu tetap bertumbuh, bahkan ketika prosesnya tidak terlihat.">✧<span>pertumbuhanmu</span></button>
-<button class="constellation-star s5" data-note="Kamu layak mendapat cinta yang tidak membuatmu merasa harus menjadi orang lain. Jadilah dirimu, dengan ruang untuk terus berkembang.">✦<span>dirimu yang asli</span></button>
-<button class="constellation-star s6" data-note="Kebahagiaanmu juga penting. Kamu boleh memilih hal yang membuat hatimu lega, aman, dan hidup kembali.">✧<span>bahagiamu</span></button>
-</div><div class="constellation-message" id="constellationMessage"><span>🌌</span><p>Pilih satu bintang untuk membuka pesannya.</p></div></div></section>
-<section id="softpause" class="calm-section"><div class="section-head"><div class="kicker">a little pause, just for you</div><h2>Kalau pikiranmu sedang ramai, istirahat di sini sebentar. 🌷</h2><p>Kamu tidak harus menyelesaikan semua hal malam ini. Kita cukup melewati satu menit ini, pelan-pelan.</p></div><div class="panel calm-card"><div style="font-size:2rem">🫧 🌸 🦋</div><h2>Tarik napas, ya.</h2><p>Kalau nyaman, ikuti lingkaran ini. Tarik napas saat lingkaran membesar, lalu hembuskan perlahan saat mengecil. Kamu boleh berhenti kapan saja.</p><div class="breath-orb" id="breathOrb">siap? ♡</div><div class="calm-actions"><button class="btn" id="breathStart">Temani aku bernapas</button><button class="btn ghost" id="breathStop">Selesai dulu</button></div><p id="breathCaption" aria-live="polite">Tidak ada yang harus kamu buktikan di sini. Cukup hadir, satu napas demi satu napas.</p><hr style="border:0;border-top:1px solid #f0d6e4;margin:26px 0"><h3 style="color:#bd6e98">Sekarang, kamu lagi merasa…</h3><p>Pilih yang paling dekat dengan perasaanmu. Tidak ada jawaban salah.</p><div class="calm-actions"><button class="feeling-btn" data-feel="overwhelmed">🌧️ Penuh banget</button><button class="feeling-btn" data-feel="sad">🥺 Sedih</button><button class="feeling-btn" data-feel="tired">🪫 Capek</button><button class="feeling-btn" data-feel="okay">🌷 Sedikit lebih baik</button></div><div class="calm-note" id="feelingNote" aria-live="polite">Apa pun yang kamu rasakan, kamu tidak perlu menyembunyikannya agar tetap pantas disayangi. ♡</div></div></section>
-<section id="adventure" class="game-section"><div class="section-head"><div class="kicker">04 · play your way through</div><h2>Petualangan Kecil di Semestamu ✨</h2><p>Empat level, empat permainan, dan tiket-tiket manis yang bisa kamu simpan untuk quality time kita meski sedang LDR. ♡</p></div>
-<div class="levels"><span class="level-chip active" id="chip1">01 · Star Hop</span><span class="level-chip" id="chip2">02 · Memory Hearts</span><span class="level-chip" id="chip3">03 · Catch the Joy</span><span class="level-chip" id="chip4">04 · Ticket Wish</span></div>
-<div class="panel game-shell">
-<div class="game-top"><h3 class="game-title" id="gameTitle">Level 1 — Star Hop</h3><div class="stats"><span class="stat" id="statA">⭐ 0 / 5</span><span class="stat" id="statB">Coba lompat!</span></div></div>
-<div id="platformGame"><canvas id="platformCanvas" width="900" height="390" aria-label="Game lompat untuk mengumpulkan bintang"></canvas><p class="game-help">Keyboard: ← → untuk bergerak, ↑ / spasi untuk lompat. Di HP, gunakan tombol di bawah.</p><div class="game-controls"><button id="left" aria-label="Ke kiri">←</button><button id="jump" aria-label="Lompat">↑</button><button id="right" aria-label="Ke kanan">→</button></div></div>
-<div id="memoryGame" hidden><p class="game-help">Buka dua kartu setiap giliran dan temukan pasangan simbol yang sama. Semua pasangan ketemu untuk membuka pesan.</p><div class="memory-board" id="memoryBoard"></div></div>
-<div id="catchGame" hidden><canvas id="catchCanvas" width="900" height="390" aria-label="Game menangkap bintang dan hati"></canvas><p class="game-help">Gerakkan keranjang dengan ← → atau sentuh/geser di area game. Tangkap 12 bintang dan hati, hindari awan gelap.</p><div class="game-controls"><button id="catchLeft" aria-label="Ke kiri">←</button><button id="catchRight" aria-label="Ke kanan">→</button></div></div>
-<div id="ticketGame" hidden class="ticket-game"><div style="font-size:2.3rem">🎟️ 💗 🎟️</div><h3>Ticket Wish — kumpulkan 8 tiket cinta!</h3><p>Ketuk kartu-kartu tiket yang bertebaran. Setiap tiket adalah janji kecil untuk membuat kenangan bersama.</p><div class="ticket-picks" id="ticketPicks"></div><p id="ticketGameStatus">Tiket terkumpul: 0 / 8</p></div>
-<div class="game-actions"><button class="btn ghost" id="restartLevel">↻ Ulangi level</button><button class="btn" id="startGame">Mulai bermain ✨</button></div>
-<div class="ticket-wallet"><h3>🎟️ Dompet Tiket Kesayangan</h3><p>Setiap level yang kamu selesaikan membuka satu tiket untuk kita pakai saat quality time, walaupun lagi berjauhan.</p><div class="ticket-grid"><div class="love-ticket" id="ticketQuality"><span class="ticket-emoji">🧋</span><strong>Quality Time</strong><small>Waktu khusus cuma untuk kita.</small><button data-redeem="quality">Lihat tiket</button></div><div class="love-ticket" id="ticketNobar"><span class="ticket-emoji">🍿</span><strong>Tiket Nobar</strong><small>Pilih film, siapkan camilan.</small><button data-redeem="nobar">Lihat tiket</button></div><div class="love-ticket" id="ticketHug"><span class="ticket-emoji">🫂</span><strong>Tiket Peluk</strong><small>Peluk virtual sekarang, peluk sungguhan saat bertemu.</small><button data-redeem="hug">Lihat tiket</button></div><div class="love-ticket" id="ticketSurprise"><span class="ticket-emoji">💌</span><strong>Surprise Date</strong><small>Kejutan kecil dari Kafaniel.</small><button data-redeem="surprise">Lihat tiket</button></div></div><div class="ticket-redeem" id="ticketRedeem" hidden aria-live="polite"></div></div>
-<div class="message" id="levelMessage"><div class="big" id="messageIcon">💌</div><h3 id="messageTitle">Pesan untukmu</h3><p id="messageBody"></p><p class="poem-line" id="messagePoem"></p><button class="btn" id="continueBtn">Lanjut ke level berikutnya →</button></div>
-</div></section>
-<section id="final"><div class="panel final-card"><div class="final-heart">💗</div><div class="kicker">a final little reminder</div><h2>Kamu bukan cuma tokoh utama di game ini.</h2><p>Kamu juga tokoh utama dalam hidupmu sendiri. Kamu pantas mendapat cerita yang baik, hari-hari yang lebih ringan, hubungan yang aman, dan kebahagiaan yang tidak perlu kamu minta maafkan.</p><p>Kalau suatu saat kamu lupa betapa berharganya dirimu, datanglah kembali ke sini. Mainkan lagi levelnya, baca lagi puisinya, atau cukup diam sebentar. Tidak apa-apa kalau hari ini kamu belum baik-baik saja.</p><p><strong style="color:var(--mint)">Kamu tidak harus melewati semuanya sendirian. Kamu cukup sebagai dirimu hari ini, dan kamu pantas mendapat dukungan, rasa aman, serta kebahagiaan. ♡</strong></p><button class="btn" id="finalSurprise">Buka kejutan terakhir 🎁</button></div></section>
-<footer><div style="font-size:2rem">✧ ♡ ✧</div><p>Dibuat dengan hangat, khusus untuk <strong>Falasifah</strong>.</p><small>Semoga semesta selalu punya ruang lembut untukmu. · made with ♡ by Kafaniel</small></footer>
-<button id="soundBtn">♫ Musik: mati</button><div class="toast" id="toast"></div>
+Kamu layak dicintai,
+termasuk oleh dirimu sendiri.</p>
+    </article>
+  </div>
+</section>
+<section id="softpause" style="background:#fff0f7">
+  <div class="section-head">
+    <div class="kicker">a little pause, just for you</div>
+    <h2>Kalau pikiranmu sedang ramai, istirahat di sini. 🌷</h2>
+    <p>Kamu tidak harus menyelesaikan semuanya hari ini.</p>
+  </div>
+
+  <div class="panel letter" style="text-align:center">
+    <div style="font-size:3rem">🫧🌸🦋</div>
+    <h3>Tarik napas, ya.</h3>
+    <p>Ikuti lingkaran ini kalau kamu mau. Tarik napas ketika membesar, lalu hembuskan perlahan ketika mengecil.</p>
+    <div id="breathOrb" style="
+      width:140px;height:140px;margin:30px auto;
+      border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,#ffd9e8,#e6d8ff);
+      color:#946286;font-weight:bold;
+      transition:transform 4s ease-in-out">
+      siap? ♡
+    </div>
+    <button class="btn" id="breathStart">Temani aku bernapas</button>
+    <button class="btn" id="breathStop">Selesai dulu</button>
+    <p id="breathCaption">Cukup satu napas demi satu napas. ♡</p>
+
+    <hr style="border:0;border-top:1px solid #f0d6e4;margin:28px 0">
+
+    <h3 style="color:#bd6e98">Sekarang kamu lagi merasa…</h3>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn feeling" data-note="Kamu tidak harus memecahkan semuanya sekarang. Pilih satu hal kecil, atau istirahat dulu. Kamu boleh meminta seseorang menemanimu.">🌧️ Penuh banget</button>
+      <button class="btn feeling" data-note="Kamu tidak perlu buru-buru mengubah sedih menjadi bahagia. Perasaanmu layak diberi ruang.">🥺 Sedih</button>
+      <button class="btn feeling" data-note="Istirahat bukan hadiah yang harus kamu dapatkan setelah menyelesaikan semuanya. Kamu boleh berhenti sebentar.">🪫 Capek</button>
+      <button class="btn feeling" data-note="Aku senang kalau hari ini terasa sedikit lebih ringan. Nikmati momen kecil ini, ya. ♡">🌷 Lebih baik</button>
+    </div>
+    <p id="feelingNote" style="margin-top:20px;background:#fff5fa;padding:18px;border-radius:16px">
+      Apa pun yang kamu rasakan, kamu tetap pantas disayangi. ♡
+    </p>
+  </div>
+</section>
+
+<section id="adventure" style="background:linear-gradient(#fff8fb,#fceaf3,#fff8fb)">
+  <div class="section-head">
+    <div class="kicker">04 · your pink adventure</div>
+    <h2>Petualangan Falasifah 🎀</h2>
+    <p>
+      Seperti Mario! Lewati platform, lompat melewati rintangan,
+      kumpulkan bintang, lalu masuk portal untuk lanjut ke dunia berikutnya.
+    </p>
+  </div>
+
+  <div class="panel letter">
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+      <span class="btn" id="level1Label">🌸 Level 1</span>
+      <span class="btn" id="level2Label">🌙 Level 2</span>
+      <span class="btn" id="level3Label">☁️ Level 3</span>
+      <span class="btn" id="level4Label">👑 Level 4</span>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <h3 id="worldTitle" style="color:#bd6e98">Level 1 — Pink Meadow</h3>
+      <strong id="gameStats">⭐ 0 / 5</strong>
+    </div>
+
+    <canvas id="marioCanvas" width="900" height="420" style="
+      display:block;width:100%;height:auto;
+      background:#ffe5f1;border:2px solid #efcfe0;
+      border-radius:20px;touch-action:pan-y">
+    </canvas>
+
+    <p id="gameHint" style="text-align:center;color:#987b92">
+      Kumpulkan 5 bintang, hindari slime, dan masuk portal di sebelah kanan!
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="btn" id="moveLeft">⬅️ Kiri</button>
+      <button class="btn" id="jumpBtn">⬆️ Lompat</button>
+      <button class="btn" id="moveRight">Kanan ➡️</button>
+    </div>
+
+    <div style="text-align:center;margin-top:18px">
+      <button class="btn" id="playGame">Mulai bermain 💗</button>
+      <button class="btn" id="resetGame">Ulangi level ↻</button>
+    </div>
+
+    <div id="levelMessage" style="
+      display:none;text-align:center;margin-top:25px;
+      padding:25px;border:1px solid #efcfe0;
+      background:linear-gradient(135deg,#fff0f7,#f6f0ff);
+      border-radius:20px">
+      <div id="levelEmoji" style="font-size:3rem">🌟</div>
+      <h3 id="levelMessageTitle" style="color:#bd6e98">Kamu berhasil!</h3>
+      <p id="levelMessageText"></p>
+      <button class="btn" id="nextLevel">Lanjut ke level berikutnya →</button>
+    </div>
+
+    <div style="margin-top:35px;padding:20px;border-radius:20px;background:#fff5fa;border:1px solid #efcfe0">
+      <h3 style="color:#bd6e98">🎟️ Dompet Tiket Kesayangan</h3>
+      <p>Tiket terbuka setiap kali kamu menyelesaikan satu level.</p>
+      <div id="ticketWallet" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+        <div class="panel" style="padding:15px;text-align:center" id="qualityTicket">
+          🔒<br><strong>🧋 Quality Time</strong><br><small>Waktu khusus untuk kita.</small>
+        </div>
+        <div class="panel" style="padding:15px;text-align:center" id="nobarTicket">
+          🔒<br><strong>🍿 Tiket Nobar</strong><br><small>Pilih film dan nonton bersama.</small>
+        </div>
+        <div class="panel" style="padding:15px;text-align:center" id="hugTicket">
+          🔒<br><strong>🫂 Tiket Peluk</strong><br><small>Peluk virtual sampai bertemu.</small>
+        </div>
+        <div class="panel" style="padding:15px;text-align:center" id="surpriseTicket">
+          🔒<br><strong>💌 Surprise Date</strong><br><small>Kejutan kecil dari Kafaniel.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="final">
+  <div class="panel letter" style="text-align:center">
+    <div style="font-size:4rem">💗</div>
+    <div class="kicker">one last little reminder</div>
+    <h2 style="font-size:clamp(2rem,6vw,4rem);color:#bd6e98">
+      Kamu pantas bahagia, Falasifah.
+    </h2>
+    <p>
+      Kamu bukan hanya tokoh utama di game ini.
+      Kamu juga tokoh utama dalam hidupmu sendiri.
+      Kamu pantas mendapat cerita yang baik, hubungan yang aman,
+      hari-hari yang lebih ringan, dan kebahagiaan.
+    </p>
+    <p>
+      Kalau suatu hari kamu lupa betapa berharganya dirimu,
+      ingatlah bahwa kamu tidak harus melewati semuanya sendirian. ♡
+    </p>
+    <button class="btn" id="finalSurprise">Buka kejutan terakhir 🎁</button>
+  </div>
+</section>
+
+<footer>
+  <div style="font-size:2rem">✧ ♡ ✧</div>
+  Dibuat dengan hangat, khusus untuk <strong>Falasifah</strong>.<br>
+  <small>Made with love by Kafaniel ♡</small>
+</footer>
 <script>
-/* Twinkling starfield */
-const sky=document.getElementById('sky'),sctx=sky.getContext('2d');let twinkles=[];
-function sizeSky(){sky.width=innerWidth*devicePixelRatio;sky.height=innerHeight*devicePixelRatio;sky.style.width=innerWidth+'px';sky.style.height=innerHeight+'px';sctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);twinkles=Array.from({length:Math.min(150,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.3,a:Math.random(),v:Math.random()*.012+.003}))}
-function drawSky(){sctx.clearRect(0,0,innerWidth,innerHeight);twinkles.forEach(t=>{t.a+=t.v;if(t.a>1||t.a<0)t.v*=-1;sctx.fillStyle=`rgba(255,235,255,${Math.max(.15,t.a)})`;sctx.beginPath();sctx.arc(t.x,t.y,t.r,0,Math.PI*2);sctx.fill()});requestAnimationFrame(drawSky)}addEventListener('resize',sizeSky);sizeSky();drawSky();
-const $=id=>document.getElementById(id);function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2300)}
-// Portal entrance and constellation notes
-$('enterPortal').onclick=()=>{$('portalIntro').classList.add('closed');burst(75);setTimeout(()=>$('letter').scrollIntoView({behavior:'smooth'}),650)};
-document.querySelectorAll('.constellation-star').forEach((star,i)=>star.addEventListener('click',()=>{$('constellationMessage').innerHTML='<span>✨</span><p>'+star.dataset.note+'</p>';burst(12)}));
+/* =========================================
+   FALASIFAH'S LITTLE UNIVERSE
+   Made with love by Kafaniel ♡
+========================================= */
 
-function burst(n=55){const layer=$('burst'),icons=['♡','✦','✧','✿','💗','✨'];for(let i=0;i<n;i++){const p=document.createElement('span');p.className='particle';p.textContent=icons[Math.floor(Math.random()*icons.length)];p.style.left=Math.random()*100+'%';p.style.animationDuration=(2+Math.random()*3)+'s';p.style.animationDelay=Math.random()*.5+'s';p.style.fontSize=(12+Math.random()*22)+'px';layer.appendChild(p);setTimeout(()=>p.remove(),5500)}}
+const $ = id => document.getElementById(id);
 
-/* Game state */
-let current=0,completed=[false,false,false,false],tickets=0;
-const levelNames=['Star Hop','Memory Hearts','Catch the Joy','Ticket Wish'];
-const levelMessages=[
-{icon:'🌟',title:'Kamu berhasil menemukan cahaya!',body:'Satu bintang demi satu bintang, kamu berhasil sampai di sini. Ingat, kamu tidak harus bersinar setiap saat untuk tetap berharga.',poem:'Bahkan malam yang paling gelap\\ntidak bisa menghapus keberadaan bintang.'},
-{icon:'💗',title:'Kamu menemukan semua hati!',body:'Kamu berhasil menemukan pasangan yang tersembunyi. Semoga kamu juga selalu menemukan orang-orang yang membuatmu merasa aman menjadi dirimu sendiri.',poem:'Semoga hatimu bertemu dengan hal-hal\\nyang membuatnya merasa pulang.'},
-{icon:'🦋',title:'Kamu berhasil menangkap hal baik!',body:'Tidak semua awan bisa kamu kendalikan, dan itu tidak apa-apa. Kamu tetap bisa mencari hal kecil yang membuat hari terasa lebih ringan.',poem:'Kamu tidak perlu mengusir semua awan\\nuntuk tetap pantas melihat pelangi.'},
-{icon:'🎟️',title:'Semua tiket cinta terkumpul!',body:'Kamu berhasil membuka semua kejutan kecil ini. Pilih satu tiket dan kita wujudkan bersama, meski jarak sedang memisahkan.',poem:'Jarak hanya memisahkan tempat,\\nbukan niat untuk saling mendekat.'}
+/* ---------- MUSIK HAPPY BIRTHDAY ---------- */
+let audioCtx = null;
+let musicOn = false;
+let musicTimer = null;
+let noteIndex = 0;
+let activeOscillators = [];
+
+const melody = [
+  [392, .35], [392, .25], [440, .65], [392, .65],
+  [523, .65], [494, 1],
+  [392, .35], [392, .25], [440, .65], [392, .65],
+  [587, .65], [523, 1],
+  [392, .35], [392, .25], [784, .65], [659, .65],
+  [523, .65], [494, .65], [440, 1],
+  [698, .35], [698, .25], [659, .65], [523, .65],
+  [587, .65], [523, 1]
 ];
-function setLevel(n){current=n;document.querySelectorAll('.level-chip').forEach((el,i)=>{el.classList.toggle('active',i===n);el.classList.toggle('done',completed[i])});$('gameTitle').textContent=`Level ${n+1} — ${levelNames[n]}`;$('platformGame').hidden=n!==0;$('memoryGame').hidden=n!==1;$('catchGame').hidden=n!==2;$('ticketGame').hidden=n!==3;$('levelMessage').classList.remove('show');$('startGame').textContent=completed[n]?'Mainkan lagi ✨':'Mulai bermain ✨';if(n===0)drawPlatform();if(n===1)renderMemory();if(n===2)drawCatch();if(n===3)resetTicketGame()}
-function winLevel(){if(completed[current])return;completed[current]=true;tickets=Math.min(4,tickets+1);updateTickets();document.querySelectorAll('.level-chip')[current].classList.add('done');$('messageIcon').textContent=levelMessages[current].icon;$('messageTitle').textContent=levelMessages[current].title;$('messageBody').textContent=levelMessages[current].body;$('messagePoem').textContent=levelMessages[current].poem;$('levelMessage').classList.add('show');$('startGame').textContent='Level selesai ♡';$('continueBtn').textContent=current===3?'Main lagi dari awal ↺':'Lanjut ke level berikutnya →';burst(45)}
-$('continueBtn').onclick=()=>{if(current<3)setLevel(current+1);else{completed=[false,false,false,false];tickets=0;updateTickets();setLevel(0);resetPlatform();resetMemory();resetCatch();toast('Petualangan baru dimulai lagi ♡')}};
-$('startGame').onclick=()=>{if(completed[current]){if(current===0)resetPlatform();if(current===1)resetMemory();if(current===2)resetCatch();if(current===3)resetTicketGame();completed[current]=false;document.querySelectorAll('.level-chip')[current].classList.remove('done');$('levelMessage').classList.remove('show');$('startGame').textContent='Mulai bermain ✨'}else if(current===0)toast('Kumpulkan 5 bintang lalu masuk ke gerbang!');else if(current===1)toast('Cari 6 pasangan simbol yang sama!');else if(current===2)toast('Tangkap 12 bintang dan hati!');else toast('Kumpulkan 8 tiket cinta!')};
-$('restartLevel').onclick=()=>{completed[current]=false;document.querySelectorAll('.level-chip')[current].classList.remove('done');$('levelMessage').classList.remove('show');if(current===0)resetPlatform();if(current===1)resetMemory();if(current===2)resetCatch();if(current===3)resetTicketGame();$('startGame').textContent='Mulai bermain ✨'};
 
-/* Ticket wallet */
-const ticketDetails={
-quality:{id:'ticketQuality',title:'🧋 Quality Time',text:'Tiket untuk waktu khusus berdua. Pilih waktu yang sama-sama nyaman, lalu kita ngobrol tanpa terburu-buru, saling cerita, atau sekadar menemani satu sama lain.',list:['Pilih waktu yang cocok untuk kita berdua.','Boleh ngobrol serius atau cerita hal random.','Tidak harus lama; yang penting hadir sepenuh hati.']},
-nobar:{id:'ticketNobar',title:'🍿 Tiket Nobar',text:'Kita pilih film atau serial, siapkan camilan masing-masing, lalu tekan play di waktu yang sama. Kalau mau, kita bisa video call sambil nonton.',list:['Falasifah bebas memilih filmnya.','Siapkan camilan dan minuman favorit.','Selesai film, kita cerita bagian favorit masing-masing.']},
-hug:{id:'ticketHug',title:'🫂 Tiket Peluk',text:'Untuk sekarang, peluk virtual dulu yang erat. Nanti saat kita bertemu, tiket ini bisa ditukar dengan peluk sungguhan yang lama—selama kamu nyaman.',list:['Kirim pesan “aku butuh peluk”.','Kita bisa diam bersama tanpa harus mencari kata-kata.','Peluk sungguhan saat bertemu, dengan izin dan kenyamanan kita berdua.']},
-surprise:{id:'ticketSurprise',title:'💌 Surprise Date',text:'Tiket untuk kejutan kecil dari Kafaniel. Bentuknya bisa surat manis, playlist, permainan berdua, atau kencan virtual yang direncanakan khusus untukmu.',list:['Beri tahu kapan kamu ingin menukarnya.','Kamu boleh kasih petunjuk kecil tentang hal yang kamu suka.','Kejutannya dibuat dengan niat baik, bukan harus mahal.']}
+function playNote(freq, duration) {
+  if (!audioCtx) return;
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = "sine";
+  osc.frequency.value = freq;
+
+  gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.08, audioCtx.currentTime + 0.04
+  );
+  gain.gain.setTargetAtTime(
+    0.0001,
+    audioCtx.currentTime + duration * 0.75,
+    0.08
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration + 0.15);
+
+  activeOscillators.push(osc);
+  osc.onended = () => {
+    activeOscillators = activeOscillators.filter(o => o !== osc);
+  };
+}
+
+function musicStep() {
+  if (!musicOn) return;
+
+  const [freq, beat] = melody[noteIndex];
+  playNote(freq, beat * 0.42);
+
+  noteIndex = (noteIndex + 1) % melody.length;
+  musicTimer = setTimeout(musicStep, beat * 470);
+}
+
+function toggleMusic() {
+  if (!audioCtx) {
+    const AudioContextClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) {
+      alert("Browser kamu belum mendukung audio.");
+      return;
+    }
+
+    audioCtx = new AudioContextClass();
+  }
+
+  if (musicOn) {
+    musicOn = false;
+    clearTimeout(musicTimer);
+
+    activeOscillators.forEach(osc => {
+      try { osc.stop(); } catch (e) {}
+    });
+
+    activeOscillators = [];
+    $("musicButton").textContent = "♫ Putar Happy Birthday";
+  } else {
+    audioCtx.resume();
+    musicOn = true;
+    $("musicButton").textContent = "♫ Hentikan musik";
+    musicStep();
+  }
+}
+
+/* ---------- KONTROL MUSIK ---------- */
+const musicButton = document.createElement("button");
+musicButton.id = "musicButton";
+musicButton.className = "btn";
+musicButton.textContent = "♫ Putar Happy Birthday";
+musicButton.style.position = "fixed";
+musicButton.style.right = "15px";
+musicButton.style.bottom = "15px";
+musicButton.style.zIndex = "50";
+musicButton.style.fontSize = ".8rem";
+document.body.appendChild(musicButton);
+musicButton.addEventListener("click", toggleMusic);
+
+/* ---------- PESAN DAN NAPAS ---------- */
+let breathInterval = null;
+let breathPhase = 0;
+
+$("breathStart").onclick = () => {
+  clearInterval(breathInterval);
+  breathPhase = 0;
+
+  const orb = $("breathOrb");
+  const caption = $("breathCaption");
+
+  function breathe() {
+    if (breathPhase % 2 === 0) {
+      orb.style.transform = "scale(1.2)";
+      orb.textContent = "Tarik napas…";
+      caption.textContent = "Tarik napas perlahan jika terasa nyaman.";
+    } else {
+      orb.style.transform = "scale(.88)";
+      orb.textContent = "Hembuskan…";
+      caption.textContent = "Lepaskan perlahan. Tidak perlu terburu-buru.";
+    }
+    breathPhase++;
+  }
+
+  breathe();
+  breathInterval = setInterval(breathe, 4000);
 };
-function updateTickets(){const ids=['ticketQuality','ticketNobar','ticketHug','ticketSurprise'];ids.forEach((id,i)=>$(id).classList.toggle('unlocked',i<tickets));document.querySelectorAll('[data-redeem]').forEach(b=>{const i=ids.indexOf(ticketDetails[b.dataset.redeem].id);b.disabled=i>=tickets})}
-document.querySelectorAll('[data-redeem]').forEach(b=>b.addEventListener('click',()=>{const d=ticketDetails[b.dataset.redeem];if(!$(d.id).classList.contains('unlocked')){toast('Selesaikan level untuk membuka tiket ini ♡');return}const box=$('ticketRedeem');box.hidden=false;box.innerHTML=`<h4>${d.title}</h4><p>${d.text}</p><ul>${d.list.map(x=>`<li>${x}</li>`).join('')}</ul><p class="ticket-redeem-note">Tiket ini adalah janji manis untuk direncanakan bersama, ya. ♡</p>`;box.scrollIntoView({behavior:'smooth',block:'nearest'});burst(12)}));
 
-/* Level 4 ticket collection mini-game */
-let foundTickets=new Set();
-function resetTicketGame(){foundTickets=new Set();const board=$('ticketPicks');board.innerHTML='';const icons=['🎟️','💗','💌','🌷','⭐','🫶','🍿','🧋'];const order=[...icons].sort(()=>Math.random()-.5);order.forEach((icon,i)=>{const b=document.createElement('button');b.className='ticket-pick';b.textContent='?';b.setAttribute('aria-label','Kartu tiket tertutup');b.onclick=()=>{if(foundTickets.has(i))return;foundTickets.add(i);b.textContent=icon;b.classList.add('found');b.setAttribute('aria-label',icon);$('ticketGameStatus').textContent=`Tiket terkumpul: ${foundTickets.size} / 8`;$('statA').textContent=`🎟️ ${foundTickets.size} / 8`;burst(5);if(foundTickets.size===8)setTimeout(winLevel,350)};board.appendChild(b)});$('ticketGameStatus').textContent='Tiket terkumpul: 0 / 8';$('statA').textContent='🎟️ 0 / 8'}
+$("breathStop").onclick = () => {
+  clearInterval(breathInterval);
+  breathInterval = null;
+  $("breathOrb").style.transform = "scale(1)";
+  $("breathOrb").textContent = "siap? ♡";
+  $("breathCaption").textContent =
+    "Kamu boleh beristirahat kapan pun kamu mau. ♡";
+};
 
-/* Level 1 platform game */
-const pc=$('platformCanvas'),pctx=pc.getContext('2d');let player,platforms,stars,score=0,keys={},pRunning=true;
-function resetPlatform(){player={x:38,y:290,w:28,h:34,vy:0,on:false};platforms=[{x:0,y:345,w:900,h:45},{x:115,y:286,w:115,h:13},{x:260,y:225,w:110,h:13},{x:400,y:285,w:105,h:13},{x:535,y:215,w:115,h:13},{x:680,y:285,w:100,h:13}];stars=[{x:165,y:255},{x:310,y:193},{x:450,y:252},{x:580,y:180},{x:730,y:250}].map(o=>({...o,taken:false}));score=0;$('statA').textContent='⭐ 0 / 5';drawPlatform()}
-function drawPlatform(){let g=pctx.createLinearGradient(0,0,0,390);g.addColorStop(0,'#17274b');g.addColorStop(1,'#39234e');pctx.fillStyle=g;pctx.fillRect(0,0,900,390);for(let i=0;i<45;i++){pctx.fillStyle='#ffffff55';pctx.beginPath();pctx.arc((i*173)%900,(i*79)%280,1.3,0,7);pctx.fill()}pctx.fillStyle='#5a3b77';pctx.beginPath();pctx.ellipse(140,380,210,80,0,Math.PI,Math.PI*2);pctx.ellipse(690,380,280,90,0,Math.PI,Math.PI*2);pctx.fill();platforms.forEach(p=>{pctx.fillStyle='#6d5caa';pctx.beginPath();pctx.roundRect(p.x,p.y,p.w,p.h,7);pctx.fill();pctx.fillStyle='#bba7ff';pctx.fillRect(p.x+5,p.y+2,p.w-10,3)});stars.forEach(s=>{if(s.taken)return;pctx.font='26px serif';pctx.fillText('⭐',s.x-13,s.y+9)});pctx.font='30px serif';pctx.fillText('🚪',835,330);pctx.font='28px serif';pctx.fillText('🧚🏻‍♀️',player.x-4,player.y+28);if(score===5&&player.x>820){pctx.fillStyle='#fff';pctx.font='bold 30px system-ui';pctx.textAlign='center';pctx.fillText('YOU DID IT! ♡',450,115);pctx.textAlign='left'}}
-function platformFrame(){if(current===0&&!completed[0]){player.vy+=.5;player.x=Math.max(0,Math.min(865,player.x+((keys.right?1:0)-(keys.left?1:0))*4));if(keys.jump&&player.on){player.vy=-11;player.on=false;keys.jump=false}let oldY=player.y;player.y+=player.vy;player.on=false;platforms.forEach(p=>{if(player.x+player.w>p.x&&player.x<p.x+p.w&&oldY+player.h<=p.y+5&&player.y+player.h>=p.y&&player.vy>=0){player.y=p.y-player.h;player.vy=0;player.on=true}});if(player.y>420){player.x=35;player.y=290;player.vy=0}stars.forEach(s=>{if(!s.taken&&Math.abs(player.x+14-s.x)<23&&Math.abs(player.y+17-s.y)<28){s.taken=true;score++;$('statA').textContent=`⭐ ${score} / 5`;if(score===5)toast('Semua bintang terkumpul! Cari gerbang di kanan ♡')}});drawPlatform();if(score===5&&player.x>820)winLevel()}requestAnimationFrame(platformFrame)}
-function hold(id,k){const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();keys[k]=true});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[k]=false))}
-hold('left','left');hold('right','right');hold('jump','jump');addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp',' '].includes(e.key))e.preventDefault();if(e.key==='ArrowLeft')keys.left=true;if(e.key==='ArrowRight')keys.right=true;if(e.key==='ArrowUp'||e.key===' ')keys.jump=true});addEventListener('keyup',e=>{if(e.key==='ArrowLeft')keys.left=false;if(e.key==='ArrowRight')keys.right=false;if(e.key==='ArrowUp'||e.key===' ')keys.jump=false});
+document.querySelectorAll(".feeling").forEach(button => {
+  button.onclick = () => {
+    $("feelingNote").textContent = button.dataset.note;
+  };
+});
 
-/* Level 2 memory matching */
-const symbols=['🌙','💗','🌷','⭐','🦋','🌈'];let deck=[],first=null,lock=false,matches=0,turns=0;
-function resetMemory(){deck=[...symbols,...symbols].sort(()=>Math.random()-.5).map((s,i)=>({s,i,open:false,match:false}));first=null;lock=false;matches=0;turns=0;renderMemory();$('statA').textContent='💗 0 / 6';$('statB').textContent='Pasangan: 0'}
-function renderMemory(){const board=$('memoryBoard');board.innerHTML='';deck.forEach((c,i)=>{const b=document.createElement('button');b.className='memory-card'+((c.open||c.match)?' revealed':'')+(c.match?' matched':'');b.textContent=(c.open||c.match)?c.s:'✦';b.setAttribute('aria-label',(c.open||c.match)?c.s:'Kartu tertutup');b.onclick=()=>flipCard(i);board.appendChild(b)})}
-function flipCard(i){if(current!==1||lock||deck[i].match||deck[i].open)return;deck[i].open=true;renderMemory();if(first===null){first=i;return}turns++;const a=deck[first],b=deck[i];if(a.s===b.s){a.match=b.match=true;matches++;first=null;$('statA').textContent=`💗 ${matches} / 6`;$('statB').textContent=`Giliran: ${turns}`;renderMemory();if(matches===6)setTimeout(winLevel,450)}else{lock=true;setTimeout(()=>{a.open=b.open=false;first=null;lock=false;renderMemory();$('statB').textContent=`Giliran: ${turns}`},750)}}
-function resetCatch(){basket={x:410,y:330,w:80};fallers=[];catchScore=0;catchTick=0;catchRunning=true;$('statA').textContent='✨ 0 / 12';$('statB').textContent='Cari yang baik';drawCatch()}
-let basket={x:410,y:330,w:80},fallers=[],catchScore=0,catchTick=0,catchRunning=true,catchKeys={};
-const cc=$('catchCanvas'),cctx=cc.getContext('2d');
-function drawCatch(){let g=cctx.createLinearGradient(0,0,0,390);g.addColorStop(0,'#203b62');g.addColorStop(1,'#43244f');cctx.fillStyle=g;cctx.fillRect(0,0,900,390);for(let i=0;i<40;i++){cctx.fillStyle='#ffffff50';cctx.fillRect((i*127)%900,(i*53)%310,2,2)}cctx.fillStyle='#76549a';cctx.beginPath();cctx.ellipse(450,410,520,120,0,Math.PI,Math.PI*2);cctx.fill();cctx.font='48px serif';cctx.fillText('🧺',basket.x,365);fallers.forEach(f=>{cctx.font='27px serif';cctx.fillText(f.type==='bad'?'☁️':f.type==='heart'?'💗':'⭐',f.x,f.y)})}
-function catchFrame(){if(current===2&&!completed[2]){catchTick++;if(catchTick%35===0)fallers.push({x:25+Math.random()*830,y:-10,type:Math.random()<.22?'bad':Math.random()<.5?'heart':'star',v:2+Math.random()*2});basket.x+=((catchKeys.right?1:0)-(catchKeys.left?1:0))*6;basket.x=Math.max(0,Math.min(820,basket.x));fallers.forEach(f=>{f.y+=f.v;if(f.y>320&&f.y<370&&f.x>basket.x-5&&f.x<basket.x+basket.w){if(f.type!=='bad'){catchScore++;$('statA').textContent=`✨ ${catchScore} / 12`;if(catchScore>=12)winLevel()}else{catchScore=Math.max(0,catchScore-1);$('statA').textContent=`✨ ${catchScore} / 12`;toast('Awan lewat saja—jangan biarkan menghapus hal baikmu ♡')}f.y=500}});fallers=fallers.filter(f=>f.y<410);drawCatch()}requestAnimationFrame(catchFrame)}
-[['catchLeft','left'],['catchRight','right']].forEach(([id,k])=>{const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();catchKeys[k]=true});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>catchKeys[k]=false))});
-cc.addEventListener('pointermove',e=>{if(current!==2)return;const r=cc.getBoundingClientRect();basket.x=Math.max(0,Math.min(820,(e.clientX-r.left)/r.width*900-basket.w/2))});
-addEventListener('keydown',e=>{if(e.key==='ArrowLeft')catchKeys.left=true;if(e.key==='ArrowRight')catchKeys.right=true});addEventListener('keyup',e=>{if(e.key==='ArrowLeft')catchKeys.left=false;if(e.key==='ArrowRight')catchKeys.right=false});
+/* ---------- GAME PLATFORMER 4 LEVEL ---------- */
+const canvas = $("marioCanvas");
+const ctx = canvas.getContext("2d");
 
-/* Gentle breathing companion and emotional check-in */
-let breathTimer=null,breathPhase=0;const breathSteps=[{label:'Tarik napas…',cls:'inhale',ms:4000},{label:'Hembuskan perlahan…',cls:'exhale',ms:5000}];
-function stopBreathing(){if(breathTimer)clearTimeout(breathTimer);breathTimer=null;$('breathOrb').classList.remove('inhale','exhale');$('breathOrb').textContent='siap? ♡';$('breathCaption').textContent='Tidak ada yang harus kamu buktikan di sini. Cukup hadir, satu napas demi satu napas.';$('breathStart').disabled=false}
-function breathingCycle(){if(!breathTimer)return;const step=breathSteps[breathPhase%2];$('breathOrb').classList.remove('inhale','exhale');$('breathOrb').classList.add(step.cls);$('breathOrb').textContent=step.label;$('breathCaption').textContent=breathPhase%2===0?'Tarik napas dengan nyaman, tidak perlu terlalu dalam.':'Lepaskan perlahan, biarkan bahu sedikit rileks jika terasa nyaman.';breathPhase++;breathTimer=setTimeout(breathingCycle,step.ms)}
-$('breathStart').onclick=()=>{stopBreathing();breathPhase=0;$('breathStart').disabled=true;breathTimer=true;breathingCycle()};$('breathStop').onclick=stopBreathing;
-const feelingMessages={overwhelmed:'Kalau semuanya terasa menumpuk, kamu tidak harus memecahkan semuanya sekarang. Pilih satu hal kecil yang paling dekat, atau istirahat dulu. Kalau bisa, kirim pesan ke orang yang kamu percaya: “Aku lagi penuh banget, boleh temani aku sebentar?” ♡',sad:'Kamu tidak perlu buru-buru mengubah sedih menjadi bahagia. Perasaanmu layak diberi ruang. Semoga kamu bisa mendapat sedikit kehangatan hari ini—air minum, selimut, lagu yang kamu suka, atau seseorang yang mau mendengarkan.',tired:'Istirahat bukan hadiah yang harus kamu dapatkan setelah menyelesaikan semuanya. Kamu boleh berhenti, makan, minum, tidur, dan mengambil jeda. Dunia bisa menunggu sebentar.',okay:'Aku senang kalau hari ini terasa sedikit lebih ringan. Kamu tidak harus mempertahankan perasaan ini setiap saat; hari yang berat bisa datang lagi dan itu tidak menghapus kemajuanmu. Nikmati momen kecil ini, ya. ♡'};
-document.querySelectorAll('[data-feel]').forEach(b=>b.addEventListener('click',()=>{$('feelingNote').textContent=feelingMessages[b.dataset.feel];document.querySelectorAll('[data-feel]').forEach(x=>x.style.background='');b.style.background='#ffe3ef';burst(8)}));
+const worlds = [
+  {
+    name: "Pink Meadow",
+    sky: "#ffe5f1",
+    ground: "#f4a9cb",
+    platform: "#df91bb",
+    decoration: "🌸"
+  },
+  {
+    name: "Moon Bridge",
+    sky: "#e9e3ff",
+    ground: "#c3a6e8",
+    platform: "#ad91d7",
+    decoration: "🌙"
+  },
+  {
+    name: "Cloud Castle",
+    sky: "#e3f5ff",
+    ground: "#b8dce9",
+    platform: "#8fc5d9",
+    decoration: "☁️"
+  },
+  {
+    name: "Love Kingdom",
+    sky: "#ffe3ed",
+    ground: "#ee9fbd",
+    platform: "#db80aa",
+    decoration: "👑"
+  }
+];
 
-$('finalSurprise').onclick=()=>{burst(100);alert('Falasifah, semoga kamu selalu ingat: kamu tidak sendirian, kamu layak dicintai, dan kamu pantas bahagia—bukan nanti setelah semuanya sempurna, tapi sekarang juga. ♡')};
-let audio=null,music=false,osc=[];$('soundBtn').onclick=()=>{if(!music){try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();[261.63,329.63,392,523.25].forEach((f,i)=>{let o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=f;g.gain.value=.012;o.connect(g);g.connect(audio.destination);o.start();osc.push(o)});music=true;$('soundBtn').textContent='♫ Musik: hidup'}catch(e){toast('Audio tidak tersedia di browser ini')}}else{osc.forEach(o=>{try{o.stop()}catch(e){}});osc=[];music=false;$('soundBtn').textContent='♫ Musik: mati'}};
-resetPlatform();resetMemory();resetCatch();updateTickets();setLevel(0);platformFrame();catchFrame();
+const messages = [
+  {
+    emoji: "🌸",
+    title: "Kamu menemukan taman bunga!",
+    text: "Satu langkah kecil tetap berarti. Kamu tidak harus selalu berlari untuk sampai ke tujuan."
+  },
+  {
+    emoji: "🌙",
+    title: "Kamu berhasil melewati jembatan bulan!",
+    text: "Bahkan saat jalan terasa panjang, kamu boleh bergerak pelan-pelan. Kamu tetap bertumbuh."
+  },
+  {
+    emoji: "☁️",
+    title: "Kamu berhasil mencapai istana awan!",
+    text: "Kamu tidak perlu mengendalikan semua hal. Kamu boleh melepaskan yang terlalu berat."
+  },
+  {
+    emoji: "👑",
+    title: "Selamat, Falasifah!",
+    text: "Kamu berhasil menamatkan petualangan! Semoga kamu selalu ingat bahwa kamu pantas dicintai dan bahagia."
+  }
+];
+
+let level = 0;
+let unlocked = 0;
+let running = false;
+let won = false;
+let score = 0;
+let keys = { left: false, right: false, jump: false };
+let frameId = null;
+
+const player = {
+  x: 35,
+  y: 300,
+  w: 30,
+  h: 34,
+  vy: 0,
+  onGround: false
+};
+
+let platforms = [];
+let stars = [];
+let enemies = [];
+
+const gravity = 0.55;
+const speed = 4;
+const jumpPower = -11.5;
+
+function createWorld(n) {
+  level = n;
+  score = 0;
+  won = false;
+  running = false;
+
+  player.x = 35;
+  player.y = 300;
+  player.vy = 0;
+  player.onGround = false;
+
+  // Setiap dunia mempunyai susunan platform berbeda.
+  const layouts = [
+    [
+      [0, 370, 900, 50],
+      [100, 305, 115, 14],
+      [260, 250, 110, 14],
+      [410, 300, 110, 14],
+      [550, 225, 120, 14],
+      [710, 290, 105, 14]
+    ],
+    [
+      [0, 370, 900, 50],
+      [90, 310, 95, 14],
+      [220, 260, 95, 14],
+      [345, 205, 90, 14],
+      [475, 260, 95, 14],
+      [610, 205, 95, 14],
+      [745, 285, 100, 14]
+    ],
+    [
+      [0, 370, 900, 50],
+      [85, 305, 100, 14],
+      [210, 235, 100, 14],
+      [340, 290, 85, 14],
+      [455, 220, 105, 14],
+      [590, 165, 100, 14],
+      [730, 265, 110, 14]
+    ],
+    [
+      [0, 370, 900, 50],
+      [90, 300, 100, 14],
+      [220, 245, 100, 14],
+      [355, 185, 95, 14],
+      [485, 245, 100, 14],
+      [610, 185, 105, 14],
+      [750, 290, 95, 14]
+    ]
+  ];
+
+  platforms = layouts[n].map(p => ({
+    x: p[0], y: p[1], w: p[2], h: p[3]
+  }));
+
+  const starPositions = [
+    [145, 270], [300, 215], [455, 265],
+    [600, 190], [760, 255]
+  ];
+
+  stars = starPositions.map((p, i) => ({
+    x: p[0],
+    y: p[1],
+    taken: false
+  }));
+
+  // Slime kecil yang perlu dihindari.
+  enemies = [
+    { x: 300 + n * 15, y: 344, w: 27, h: 24, dir: 1, min: 250, max: 390 },
+    { x: 610, y: 344, w: 27, h: 24, dir: -1, min: 560, max: 720 }
+  ];
+
+  $("worldTitle").textContent =
+    `Level ${n + 1} — ${worlds[n].name}`;
+
+  $("gameStats").textContent = "⭐ 0 / 5";
+  $("gameHint").textContent =
+    "Kumpulkan 5 bintang, hindari slime, lalu masuk portal di kanan!";
+
+  $("levelMessage").style.display = "none";
+
+  for (let i = 1; i <= 4; i++) {
+    const label = $("level" + i + "Label");
+    label.style.opacity = i - 1 <= unlocked ? "1" : ".4";
+    label.style.cursor = i - 1 <= unlocked ? "pointer" : "not-allowed";
+  }
+
+  drawWorld();
+}
+
+function roundedRect(x, y, w, h, r, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+  ctx.fill();
+}
+
+function drawWorld() {
+  const world = worlds[level];
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, 420);
+  gradient.addColorStop(0, world.sky);
+  gradient.addColorStop(1, "#fffafd");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 900, 420);
+
+  // Awan pastel.
+  ctx.font = "42px serif";
+  ctx.fillText("☁️", 90, 100);
+  ctx.fillText("☁️", 380, 80);
+  ctx.fillText("☁️", 680, 110);
+
+  // Hiasan dunia.
+  ctx.font = "28px serif";
+  ctx.fillText(world.decoration, 40, 175);
+  ctx.fillText(world.decoration, 835, 150);
+
+  // Platform.
+  platforms.forEach(p => {
+    roundedRect(p.x, p.y, p.w, p.h, 7, world.platform);
+    roundedRect(p.x + 5, p.y + 2, p.w - 10, 3, 2, "#fff5fa");
+  });
+
+  // Bintang yang harus dikumpulkan.
+  stars.forEach(s => {
+    if (s.taken) return;
+    ctx.font = "27px serif";
+    ctx.fillText("⭐", s.x - 13, s.y + 9);
+  });
+
+  // Slime.
+  enemies.forEach(e => {
+    ctx.font = "25px serif";
+    ctx.fillText("🟣", e.x - 3, e.y + 24);
+  });
+
+  // Portal.
+  ctx.font = "43px serif";
+  ctx.fillText(level === 3 ? "👑" : "🌈", 832, 350);
+
+  // Karakter pemain.
+  ctx.font = "32px serif";
+  ctx.fillText("👸🏻", player.x - 5, player.y + 29);
+
+  if (score === 5) {
+    ctx.fillStyle = "#a65f8b";
+    ctx.font = "bold 22px Arial";
+    ctx.fillText("PORTAL TERBUKA! →", 650, 55);
+  }
+}
+
+function resetPosition() {
+  player.x = 35;
+  player.y = 300;
+  player.vy = 0;
+  player.onGround = false;
+}
+
+function updateWorld() {
+  if (!running || won) return;
+
+  const oldY = player.y;
+
+  if (keys.left) player.x -= speed;
+  if (keys.right) player.x += speed;
+
+  player.x = Math.max(0, Math.min(870, player.x));
+
+  player.vy += gravity;
+  player.y += player.vy;
+  player.onGround = false;
+
+  // Mendarat di platform.
+  platforms.forEach(p => {
+    const horizontal =
+      player.x + player.w > p.x &&
+      player.x < p.x + p.w;
+
+    const falling =
+      player.vy >= 0 &&
+      oldY + player.h <= p.y + 4 &&
+      player.y + player.h >= p.y;
+
+    if (horizontal && falling) {
+      player.y = p.y - player.h;
+      player.vy = 0;
+      player.onGround = true;
+    }
+  });
+
+  // Lompat.
+  if (keys.jump && player.onGround) {
+    player.vy = jumpPower;
+    player.onGround = false;
+    keys.jump = false;
+  }
+
+  // Jatuh: kembali ke posisi awal.
+  if (player.y > 440) {
+    resetPosition();
+  }
+
+  // Gerakkan slime.
+  enemies.forEach(e => {
+    e.x += e.dir * 1.1;
+    if (e.x < e.min || e.x > e.max) e.dir *= -1;
+
+    const hit =
+      player.x + player.w > e.x &&
+      player.x < e.x + e.w &&
+      player.y + player.h > e.y &&
+      player.y + 5 < e.y + e.h;
+
+    if (hit) {
+      resetPosition();
+      $("gameHint").textContent =
+        "Ups, terkena slime! Coba lompat melewatinya, ya. 💗";
+    }
+  });
+
+  // Mengambil bintang.
+  stars.forEach(s => {
+    const close =
+      !s.taken &&
+      Math.abs((player.x + player.w / 2) - s.x) < 27 &&
+      Math.abs((player.y + player.h / 2) - s.y) < 30;
+
+    if (close) {
+      s.taken = true;
+      score++;
+      $("gameStats").textContent = `⭐ ${score} / 5`;
+    }
+  });
+
+  // Portal baru aktif setelah 5 bintang terkumpul.
+  if (score === 5 && player.x > 800) {
+    finishLevel();
+  }
+}
+
+function gameLoop() {
+  updateWorld();
+  drawWorld();
+  frameId = requestAnimationFrame(gameLoop);
+}
+
+function finishLevel() {
+  if (won) return;
+
+  won = true;
+  running = false;
+  unlocked = Math.max(unlocked, level + 1);
+
+  const msg = messages[level];
+  $("levelEmoji").textContent = msg.emoji;
+  $("levelMessageTitle").textContent = msg.title;
+  $("levelMessageText").textContent = msg.text;
+
+  $("levelMessage").style.display = "block";
+
+  if (level < 3) {
+    $("nextLevel").textContent =
+      `Masuk ke ${worlds[level + 1].name} →`;
+  } else {
+    $("nextLevel").textContent = "Main lagi dari awal ↻";
+  }
+
+  unlockTicket(level);
+  $("levelMessage").scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}
+
+function unlockTicket(n) {
+  const ids = [
+    "qualityTicket",
+    "nobarTicket",
+    "hugTicket",
+    "surpriseTicket"
+  ];
+
+  const labels = [
+    "🧋 Quality Time",
+    "🍿 Tiket Nobar",
+    "🫂 Tiket Peluk",
+    "💌 Surprise Date"
+  ];
+
+  const descriptions = [
+    "Waktu khusus untuk kita.",
+    "Pilih film dan nonton bersama.",
+    "Peluk virtual sampai bertemu.",
+    "Kejutan kecil dari Kafaniel."
+  ];
+
+  const card = $(ids[n]);
+  card.style.background = "linear-gradient(135deg,#ffe0ed,#eee3ff)";
+  card.style.borderColor = "#e69cbd";
+  card.innerHTML =
+    `🎟️<br><strong>${labels[n]}</strong><br>` +
+    `<small>${descriptions[n]}</small><br>` +
+    `<span style="color:#b66b98;font-weight:bold">TERBUKA ♡</span>`;
+}
+
+$("playGame").onclick = () => {
+  running = true;
+  won = false;
+  $("gameHint").textContent =
+    "Ayo, Falasifah! Kumpulkan 5 bintang dan temukan portal. ♡";
+};
+
+$("resetGame").onclick = () => {
+  createWorld(level);
+  running = true;
+};
+
+$("nextLevel").onclick = () => {
+  if (level < 3) {
+    createWorld(level + 1);
+    running = true;
+  } else {
+    unlocked = 0;
+    createWorld(0);
+    running = true;
+  }
+};
+
+for (let i = 1; i <= 4; i++) {
+  $("level" + i + "Label").onclick = () => {
+    const target = i - 1;
+
+    if (target <= unlocked && target <= 3) {
+      createWorld(target);
+    }
+  };
+}
+
+/* Keyboard controls */
+window.addEventListener("keydown", e => {
+  if (["ArrowLeft", "ArrowRight", "ArrowUp", " "].includes(e.key)) {
+    e.preventDefault();
+  }
+
+  if (e.key === "ArrowLeft" || e.key === "a") keys.left = true;
+  if (e.key === "ArrowRight" || e.key === "d") keys.right = true;
+  if (e.key === "ArrowUp" || e.key === " ") keys.jump = true;
+});
+
+window.addEventListener("keyup", e => {
+  if (e.key === "ArrowLeft" || e.key === "a") keys.left = false;
+  if (e.key === "ArrowRight" || e.key === "d") keys.right = false;
+  if (e.key === "ArrowUp" || e.key === " ") keys.jump = false;
+});
+
+/* Mobile buttons */
+function holdButton(id, key) {
+  const button = $(id);
+
+  button.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    keys[key] = true;
+  });
+
+  ["pointerup", "pointerleave", "pointercancel"].forEach(eventName => {
+    button.addEventListener(eventName, () => {
+      keys[key] = false;
+    });
+  });
+}
+
+holdButton("moveLeft", "left");
+holdButton("moveRight", "right");
+holdButton("jumpBtn", "jump");
+
+/* ---------- FINAL SURPRISE ---------- */
+$("finalSurprise").onclick = () => {
+  alert(
+    "Falasifah, semoga kamu selalu ingat: " +
+    "kamu tidak sendirian, kamu layak dicintai, " +
+    "dan kamu pantas bahagia. ♡\n\n" +
+    "With love, Kafaniel 💗"
+  );
+};
+
+/* Start game */
+createWorld(0);
+gameLoop();
+
+/* Reduce accidental page movement while holding controls */
+document.querySelectorAll("#moveLeft,#moveRight,#jumpBtn").forEach(btn => {
+  btn.addEventListener("contextmenu", e => e.preventDefault());
+});
 </script>
 </body>
 </html>
